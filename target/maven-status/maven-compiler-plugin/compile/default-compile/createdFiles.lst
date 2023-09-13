@@ -1,0 +1,11 @@
+foodItems\Entree.class
+operations\BeanSearcher.class
+foodItems\Dessert.class
+foodItems\Appetizer.class
+foodItems\Consumable.class
+foodItems\Drink.class
+objects\Restaurant.class
+foodItems\Consumable$TasteElement.class
+operations\Driver.class
+operations\SQLWriting.class
+objects\Location.class

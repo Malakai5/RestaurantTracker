@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\connections\databaseOperations\ConsumableSQLOperations.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\connections\databaseOperations\LocationSQLOperations.java">
           <value>
             <Attribute>

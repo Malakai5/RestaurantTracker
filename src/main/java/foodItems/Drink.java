@@ -4,12 +4,15 @@ import java.util.List;
 
 public class Drink extends Consumable {
 
-    private boolean isAlcoholic;
-    private boolean highCaffeine;
+    private boolean isAlcoholic = false;
+    private boolean highCaffeine = false;
     private List<TasteElement> tasteElements;
 
-    public Drink(String drinkName){
-        this.name = drinkName;
+    public Drink(){}
+
+    public Drink(boolean isAlcoholic, boolean highCaffeine) {
+        this.isAlcoholic = isAlcoholic;
+        this.highCaffeine = highCaffeine;
     }
 
     public List<TasteElement> getTasteElements() {
@@ -35,6 +38,17 @@ public class Drink extends Consumable {
     public void setHighCaffeine(boolean highCaffeine) {
         this.highCaffeine = highCaffeine;
     }
+    public String getTasteElementString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for(TasteElement tasteElement : tasteElements)
+        {
+            sb.append(tasteElement.toString()).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
 
     @Override
     public String toString() {

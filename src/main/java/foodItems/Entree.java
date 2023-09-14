@@ -56,6 +56,17 @@ public class Entree extends Consumable {
         this.methodOfCooking = methodOfCooking;
     }
 
+    public String tasteElementString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for(TasteElement tasteElement : tasteElements)
+        {
+            sb.append(tasteElement.toString()).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         return name + "{" +

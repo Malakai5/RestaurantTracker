@@ -6,7 +6,7 @@ public class Appetizer extends Consumable{
 
     private String mainIngredient;
     private String methodOfCooking;
-    private boolean shareable;
+    private boolean shareable = false;
     private List<TasteElement> tasteElements;
 
     public Appetizer(String dishName){
@@ -43,6 +43,17 @@ public class Appetizer extends Consumable{
 
     public void setMethodOfCooking(String methodOfCooking) {
         this.methodOfCooking = methodOfCooking;
+    }
+
+    public String tasteElementString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for(TasteElement tasteElement : tasteElements)
+        {
+            sb.append(tasteElement.toString()).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 
     @Override

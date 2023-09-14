@@ -1,8 +1,10 @@
 package foodItems;
 
+import java.util.List;
+
 public class Consumable {
 
-    enum TasteElement {
+    public enum TasteElement {
         SWEET,
         SOUR,
         SALTY,
@@ -12,18 +14,28 @@ public class Consumable {
         }
 
     protected String name;
-    protected boolean isFavorite;
-    protected boolean hasDairy;
-    protected boolean hasMeat;
-    protected boolean isSpicy;
-    protected boolean isHot;
 
+    protected int restaurantID;
+
+    protected boolean isFavorite = false;
+    protected boolean hasDairy = false;
+    protected boolean hasMeat = false;
+    protected boolean isSpicy = false;
+    protected boolean isHot = false;
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getRestaurantID() {
+        return restaurantID;
+    }
+
+    public void setRestaurantID(int restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     public boolean isFavorite() {
@@ -69,4 +81,6 @@ public class Consumable {
     public boolean isVegan(){
         return (!hasMeat && !hasDairy);
     }
+
+
 }

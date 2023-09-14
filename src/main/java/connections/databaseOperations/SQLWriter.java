@@ -1,6 +1,7 @@
 package connections.databaseOperations;
 
 import connections.Driver;
+import foodItems.Drink;
 import objects.Location;
 import objects.Restaurant;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,6 +13,7 @@ public class SQLWriter {
 
     public static LocationSQLOperations locationSQLOperations = new LocationSQLOperations(namedParameterJdbcTemplate);
     public static RestaurantSQLOperations restaurantSQLOperations = new RestaurantSQLOperations(namedParameterJdbcTemplate);
+    public static ConsumableSQLOperations consumableSQLOperations = new ConsumableSQLOperations(namedParameterJdbcTemplate);
 
     public static void addNewLocation(Location location){
          locationSQLOperations.addNewLocation(location);
@@ -28,6 +30,14 @@ public class SQLWriter {
         System.out.println(restaurant.getLocationID());
         restaurant.setLocation(getLocation(restaurant.getLocationID()));
         return restaurant;
+    }
+
+    public static void addNewDrink(Drink drink){
+        consumableSQLOperations.addNewDrink(drink);
+    }
+
+    public static Drink getDrink(int drinkID){
+        return consumableSQLOperations.getDrink(drinkID);
     }
 
 

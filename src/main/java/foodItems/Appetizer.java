@@ -9,9 +9,14 @@ public class Appetizer extends Consumable{
     private boolean shareable = false;
     private List<TasteElement> tasteElements;
 
-    public Appetizer(String dishName){
-        this.name = dishName;
+    public Appetizer(String mainIngredient, String methodOfCooking, boolean shareable, List<TasteElement> tasteElements) {
+        this.mainIngredient = mainIngredient;
+        this.methodOfCooking = methodOfCooking;
+        this.shareable = shareable;
+        this.tasteElements = tasteElements;
     }
+
+    public Appetizer(){}
 
     public List<TasteElement> getTasteElements() {
         return tasteElements;
@@ -45,24 +50,13 @@ public class Appetizer extends Consumable{
         this.methodOfCooking = methodOfCooking;
     }
 
-    public String tasteElementString()
-    {
-        StringBuilder sb = new StringBuilder();
-        for(TasteElement tasteElement : tasteElements)
-        {
-            sb.append(tasteElement.toString()).append(",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
-    }
-
     @Override
     public String toString() {
         return name + "{" +
                 "\n isShareable = " + isShareable() +
                 ",\n mainIngredient = " + mainIngredient +
                 ",\n methodOfCooking = " + methodOfCooking +
-                ",\n favorite = " + name +
+                ",\n favorite = " + isFavorite +
                 ",\n taste = " + tasteElements +
                 ",\n hasDairy = " + hasDairy +
                 ",\n hasMeat = " + hasMeat +

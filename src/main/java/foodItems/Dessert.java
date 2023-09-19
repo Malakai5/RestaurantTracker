@@ -7,8 +7,10 @@ public class Dessert extends Consumable {
 
     private List<String> mainIngredients = new ArrayList<>();
 
-    public Dessert(String dishName) {
-        this.name = dishName;
+    public Dessert() {}
+
+    public Dessert(List<String> mainIngredients) {
+        this.mainIngredients = mainIngredients;
     }
 
     public List<String> getMainIngredients() {

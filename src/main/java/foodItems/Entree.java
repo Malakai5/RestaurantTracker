@@ -11,10 +11,15 @@ public class Entree extends Consumable {
     private String methodOfCooking;
     private List<TasteElement> tasteElements = new ArrayList<>();
 
-    public Entree(String dishName, String mealTime){
-        this.name = dishName;
+    public Entree(String mealTime, int numberOfSides, String mainIngredient, String methodOfCooking, List<TasteElement> tasteElements) {
         this.mealTime = mealTime;
+        this.numberOfSides = numberOfSides;
+        this.mainIngredient = mainIngredient;
+        this.methodOfCooking = methodOfCooking;
+        this.tasteElements = tasteElements;
     }
+
+    public Entree(){}
 
     public List<TasteElement> getTasteElements() {
         return tasteElements;
@@ -56,16 +61,6 @@ public class Entree extends Consumable {
         this.methodOfCooking = methodOfCooking;
     }
 
-    public String tasteElementString()
-    {
-        StringBuilder sb = new StringBuilder();
-        for(TasteElement tasteElement : tasteElements)
-        {
-            sb.append(tasteElement.toString()).append(",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
-    }
 
     @Override
     public String toString() {

@@ -122,6 +122,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\resources\index.html">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\resources\restaurantScripts.xml">
           <value>
             <Attribute>

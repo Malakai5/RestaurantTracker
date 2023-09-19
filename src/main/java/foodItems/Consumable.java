@@ -1,5 +1,6 @@
 package foodItems;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Consumable {
@@ -10,8 +11,8 @@ public class Consumable {
         SALTY,
         UMAMI,
         BITTER,
-        SAVORY
-        }
+        SAVORY;
+    }
 
     protected String name;
 
@@ -80,6 +81,26 @@ public class Consumable {
 
     public boolean isVegan(){
         return (!hasMeat && !hasDairy);
+    }
+
+    public String getTasteElementString(List<TasteElement> tasteElements){
+        StringBuilder sb = new StringBuilder();
+        for(TasteElement tasteElement : tasteElements)
+        {
+            sb.append(tasteElement.toString()).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
+    public List<TasteElement> getTasteElementList(String tasteElementString){
+        String[] splitString = tasteElementString.split(",");
+
+        List<TasteElement> list = new ArrayList<>();
+        for (String temp : splitString) {
+            list.add(TasteElement.valueOf(temp));
+        }
+        return list;
     }
 
 

@@ -10,4 +10,5 @@
 
     <import resource="classpath*:locationScripts.xml"/>
     <import resource="classpath*:restaurantScripts.xml"/>
+    <import resource="classpath*:consumableScripts.xml"/>
 </beans>

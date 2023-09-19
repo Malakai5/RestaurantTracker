@@ -38,16 +38,6 @@ public class Drink extends Consumable {
     public void setHighCaffeine(boolean highCaffeine) {
         this.highCaffeine = highCaffeine;
     }
-    public String getTasteElementString()
-    {
-        StringBuilder sb = new StringBuilder();
-        for(TasteElement tasteElement : tasteElements)
-        {
-            sb.append(tasteElement.toString()).append(",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
-    }
 
 
     @Override

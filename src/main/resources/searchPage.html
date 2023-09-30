@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <title>Search page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+
+        <style>
+            body, html {height: 100%}
+            body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+            .menu {display: none}
+            .bgimg
+            {
+                background-size: auto;
+                background-image: url("images/HungryLogo.png");
+                min-height: 90%;
+            }
+        </style>
+    </head>
+
+    <body>
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top w3-hide-small">
+        <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
+            <a href="index.html" class="w3-bar-item w3-button">HOME</a>
+            <a href="searchPage.html" class="w3-bar-item w3-button">SEARCH</a>
+            <a href="index.html#about" class="w3-bar-item w3-button">ABOUT</a>
+            <a href="index.html#bio" class="w3-bar-item w3-button">MEET ME</a>
+            <a href="index.html#contact" class="w3-bar-item w3-button">CONTACT</a>
+        </div>
+    </div>
+
+<!--    Search Container-->
+
+    <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="search">
+        <div class="w3-content">
+            <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">LET's GET TO SEARCHING</h1>
+            <div class="class=row w3-khaki" style="padding:128px 16px" id="searchBox">
+                <div class="w3-row w3-center w3-border w3-border-dark-grey">
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Restaurant');" id="myLink">
+                        <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
+                    </a>
+                    <a href="javascript:void(0)" onclick="openMenu(event, 'Consumables');">
+                        <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Consumables</div>
+                    </a>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    </body>
+
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
     <head>
-        <title>W3.CSS Template</title>
+        <title>Home Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -16,17 +16,18 @@
             .bgimg
             {
                 background-size: auto;
-                background-image: url("HungryLogo.png");
+                background-image: url("images/HungryLogo.png");
                 min-height: 90%;
             }
     </style>
     </head>
+
     <body>
     <!-- Navbar (sit on top) -->
     <div class="w3-top w3-hide-small">
         <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
-            <a href="#" class="w3-bar-item w3-button">HOME</a>
-            <a href="#search" class="w3-bar-item w3-button">SEARCH</a>
+            <a href="index.html" class="w3-bar-item w3-button">HOME</a>
+            <a href="searchPage.html" class="w3-bar-item w3-button">SEARCH</a>
             <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
             <a href="#bio" class="w3-bar-item w3-button">MEET ME</a>
             <a href="#contact" class="w3-bar-item w3-button">CONTACT</a>
@@ -40,7 +41,7 @@
         <div class="w3-display-middle w3-center">
             <span class="black w3-hide-small" style="font-size:100px;font-weight:bold">WHOLE LOTTA<br>MUNCHIN</span>
             <span class="w3-text-black w3-hide-large w3-hide-medium" style="font-size:60px"><b>BIG<br>MUNCH</b></span>
-            <p><a href="#search" class="w3-button w3-xxlarge w3-black">FIND SOME FOOD!!</a></p>
+            <p><a href="searchPage.html" class="w3-button w3-xxlarge w3-black">FIND SOME FOOD!!</a></p>
         </div>
     </header>
 
@@ -66,7 +67,7 @@
                 Well you can search all restaurants
                 and find any of them serving our favorite southern meal
             </p>
-            <img src="QuadMac.jpg" style="width:25%" class="w3-margin-top w3-margin-bottom" alt="Mac and Cheese">
+            <img src="images/QuadMac.jpg" style="width:25%" class="w3-margin-top w3-margin-bottom" alt="Mac and Cheese">
 
             <h2>FIND YOUR FAVORITE MUNCHINGS ON THE HUNGRY BLACK MAN</h2>
         </div>
@@ -77,7 +78,7 @@
         <div class="w3-content">
             <h1>MEET THE CREATOR OF THE HUNGRY BLACK MAN: MALIK MANDY</h1>
             <p>
-                <img src="PapaSmurf.PNG" alt="The Finest black man alive" width=60% height=60%>
+                <img src="images/PapaSmurf.PNG" alt="The Finest black man alive" width=60% height=60%>
                 <br>
                 ⇡
                 <br>
@@ -109,7 +110,7 @@
             <!-- First Photo Grid-->
             <div class="w3-row-padding">
                 <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="Cats.jpeg" alt="Two Cats Cuddling" height="382" width="305.5">
+                    <img src="images/Cats.jpeg" alt="Two Cats Cuddling" height="382" width="305.5">
                     <div class="w3-container w3-white">
                         <p><b>Playing with my two cats</b></p>
                         <p>
@@ -120,7 +121,7 @@
                     </div>
                 </div>
                 <div class="w3-third w3-container w3-margin-bottom">
-                    <img src="TappyTaps.JPG" alt="Black man playing Cajon" height="382" width="305.5" >
+                    <img src="images/TappyTaps.JPG" alt="Black man playing Cajon" height="382" width="305.5" >
                     <div class="w3-container w3-white">
                         <p><b>Playing Instruments</b></p>
                         <p>
@@ -131,7 +132,7 @@
                     </div>
                 </div>
                 <div class="w3-third w3-container">
-                    <img src="TheQueers.jpeg" alt="Two Black people holding sign" height="382" width="305.5" >
+                    <img src="images/TheQueers.jpeg" alt="Two Black people holding sign" height="382" width="305.5" >
                     <div class="w3-container w3-white">
                         <p><b>Hanging with my friends</b></p>
                         <p>
@@ -144,24 +145,13 @@
             </div>
 
             <!-- Contact Section -->
-            <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-                <h3 class="w3-center">CONTACT</h3>
-                <p class="w3-center w3-large">Feel free to hit me up with any questions:</p>
+            <div class="w3-container w3-khaki" style="padding:128px 16px" id="contact">
+                <h1 class="w3-center"><b>CONTACT</b></h1>
+                <h2 class="w3-center"><b>Feel free to hit me up with any questions:</b></h2>
                 <div style="margin-top:48px">
                     <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Tampa, Florida, US</p>
                     <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email:<a href="mailto:malik.mandy98@gmail.com"> malik.mandy98@gmail.com</a></p>
                     <br>
-                    <form action="/action_page.php" target="_blank">
-                        <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
-                        <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
-                        <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
-                        <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
-                        <p>
-                            <button class="w3-button w3-black" type="submit">
-                                <i class="fa fa-paper-plane"></i> SEND MESSAGE
-                            </button>
-                        </p>
-                    </form>
                 </div>
             </div>
 

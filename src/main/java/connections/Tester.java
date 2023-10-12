@@ -43,19 +43,21 @@ public class Tester {
         testEntree.setMeat(true);
         testEntree.setHot(true);
 
+        SQLWriter.getColumn("food_type", "restaurant");
+
 
 //==========================TESTED METHODS THAT WORK======================
-        SQLWriter.addNewLocation(testLocation);
-        SQLWriter.addNewRestaurant(testRestaurant);
-        System.out.println(SQLWriter.getLocation(3).toString());
-        Restaurant wantedRest = SQLWriter.getRestaurant(1);
-        SQLWriter.addNewDrink(testDrink);
-        System.out.println(SQLWriter.getDrink(1).toString());
-        System.out.println(SQLWriter.getDessert(4));
-        SQLWriter.addNewDessert(testDessert);
-        SQLWriter.addNewAppetizer(testAppetizer);
-        System.out.println(SQLWriter.getAppetizer(5));
-        SQLWriter.addNewEntree(testEntree);
-        System.out.println(SQLWriter.getEntree(6));
+//        SQLWriter.addNewLocation(testLocation);
+//        SQLWriter.addNewRestaurant(testRestaurant);
+//        System.out.println(SQLWriter.getLocation(3).toString());
+//        Restaurant wantedRest = SQLWriter.getRestaurant(1);
+//        SQLWriter.addNewDrink(testDrink);
+//        System.out.println(SQLWriter.getDrink(1).toString());
+//        System.out.println(SQLWriter.getDessert(4));
+//        SQLWriter.addNewDessert(testDessert);
+//        SQLWriter.addNewAppetizer(testAppetizer);
+//        System.out.println(SQLWriter.getAppetizer(5));
+//        SQLWriter.addNewEntree(testEntree);
+//        System.out.println(SQLWriter.getEntree(6));
     }
 }

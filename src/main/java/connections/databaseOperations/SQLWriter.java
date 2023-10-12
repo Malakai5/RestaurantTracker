@@ -7,16 +7,20 @@ import foodItems.Drink;
 import foodItems.Entree;
 import objects.Location;
 import objects.Restaurant;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLWriter {
 
-    private static final NamedParameterJdbcTemplate namedParameterJdbcTemplate
+    private static final NamedParameterJdbcTemplate queryParameter
             = new NamedParameterJdbcTemplate(Driver.getDataSource());
 
-    public static LocationSQLOperations locationSQLOperations = new LocationSQLOperations(namedParameterJdbcTemplate);
-    public static RestaurantSQLOperations restaurantSQLOperations = new RestaurantSQLOperations(namedParameterJdbcTemplate);
-    public static ConsumableSQLOperations consumableSQLOperations = new ConsumableSQLOperations(namedParameterJdbcTemplate);
+    public static LocationSQLOperations locationSQLOperations = new LocationSQLOperations(queryParameter);
+    public static RestaurantSQLOperations restaurantSQLOperations = new RestaurantSQLOperations(queryParameter);
+    public static ConsumableSQLOperations consumableSQLOperations = new ConsumableSQLOperations(queryParameter);
 
     public static void addNewLocation(Location location){
          locationSQLOperations.addNewLocation(location);
@@ -63,6 +67,19 @@ public class SQLWriter {
     }
     public static Entree getEntree(int entreeID){
         return consumableSQLOperations.getEntree(entreeID);
+    }
+
+    public static List<String> getColumn(String columnName, String wantedTable){
+        String sqlQuery = (String) BeanSearcher.getInstance().lookUp("select.column");
+        sqlQuery = sqlQuery.replace("wantedTable", wantedTable);
+        List<String> column = new ArrayList<>();
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
+                .addValue("columnName", columnName);
+        queryParameter.query(sqlQuery, mapSqlParameterSource, rs ->{
+            Object object = rs.getObject(columnName);
+            column.add(String.valueOf(object));
+        });
+        return column;
     }
 
 }

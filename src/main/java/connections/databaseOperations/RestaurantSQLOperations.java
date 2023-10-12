@@ -5,6 +5,9 @@ import objects.Restaurant;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RestaurantSQLOperations {
     private final NamedParameterJdbcTemplate queryParameter;
 
@@ -36,7 +39,5 @@ public class RestaurantSQLOperations {
         });
         return restaurant;
     }
-
-
 
 }

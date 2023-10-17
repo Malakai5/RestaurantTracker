@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html lang="">
 <script>
-    let food_type = document.getElementById('foodType');
+    let foodDropDownList;
+    async function getFoodTypes() {
+        try{
+            let response = await fetch("http://localhost:8080/filter/foodType");
+            let foodTypes = response.text();
+            foodTypes = (await foodTypes).replaceAll("\"","")
+            foodTypes = (foodTypes).substring(1,(foodTypes).length - 1);
+            let foodList = (foodTypes).split(",");
+            foodDropDownList = document.querySelector(".foodType");
+            foodList.forEach( foodType => foodDropDownList.add(new Option(foodType)));
+            console.log(foodDropDownList);
+        }
+        catch (error)
+        {
+            console.error("Things ain't working");
+        }
+
+    }
+    getFoodTypes();
 
 
 </script>
@@ -18,12 +36,6 @@
             body, html {height: 100%}
             body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
             .menu {display: none}
-            .bgimg
-            {
-                background-size: auto;
-                background-image: url("images/HungryLogo.png");
-                min-height: 90%;
-            }
             td {
                 font-size: 20px;
                 font-family: "Georgia", Serif;
@@ -69,14 +81,14 @@
                                 <tr>
                                     <td>Restaurant's Name</td>
                                     <td><label>
-                                        <input type="text" size="25" name="Name" required>
+                                        <input type="text" size="25" name="Name" required >
                                     </label></td>
                                 </tr>
                                 <tr>
                                     <td>State</td>
                                     <td><label>
                                         <!--- USA states -->
-                                        <select id="state" name="state" >
+                                        <select style="width: 270px" id="state" name="state" >
                                             <option value="">Select state</option>
                                             <option value="AL">Alabama</option>
                                             <option value="AK">Alaska</option>
@@ -151,18 +163,15 @@
                                     <td>City</td>
                                     <td><label>
                                         <!--- USA City -->
-                                        <input type="text" id="city" name="city">
+                                        <input style="width: 270px" type="text" id="city" name="city">
                                     </label></td>
                                 </tr>
                                 <tr>
                                     <td>Food Type
-                                    <input type="checkbox" id="food_type_checkbox" name="food_check" >
                                     </td>
                                     <td><label>
-                                        <!--- USA City -->
-                                        <select id="foodType" name="foodType">
-
-                                        </select>
+                                        <!---  Food Types -->
+                                        <select style="width: 270px" class="foodType" id="foodType" name="foodType"></select>
                                     </label></td>
                                 </tr>
 

@@ -43,7 +43,7 @@ public class Tester {
         testEntree.setMeat(true);
         testEntree.setHot(true);
 
-        SQLWriter.getColumn("food_type", "restaurant");
+        SQLWriter.getColumn("food_type", "restaurant").forEach(System.out::println);
 
 
 //==========================TESTED METHODS THAT WORK======================

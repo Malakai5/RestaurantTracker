@@ -13,7 +13,7 @@
     <import resource="classpath*:scripts/consumableScripts.xml"/>
 
     <bean id="select.column" class="java.lang.String">
-        <constructor-arg value="SELECT :columnName FROM wantedTable_table">
+        <constructor-arg value="SELECT columnName FROM wantedTable_table">
         </constructor-arg>
     </bean>
 </beans>

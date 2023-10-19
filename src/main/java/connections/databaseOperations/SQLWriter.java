@@ -72,10 +72,10 @@ public class SQLWriter {
     public static List<String> getColumn(String columnName, String wantedTable){
         String sqlQuery = (String) BeanSearcher.getInstance().lookUp("select.column");
         sqlQuery = sqlQuery.replace("wantedTable", wantedTable);
+        sqlQuery = sqlQuery.replace("columnName", columnName);
         List<String> column = new ArrayList<>();
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
-                .addValue("columnName", columnName);
-        queryParameter.query(sqlQuery, mapSqlParameterSource, rs ->{
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+       queryParameter.query(sqlQuery, mapSqlParameterSource, rs ->{
             Object object = rs.getObject(columnName);
             column.add(String.valueOf(object));
         });

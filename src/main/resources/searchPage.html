@@ -7,8 +7,8 @@
             let response = await fetch("http://localhost:8080/filter/foodType");
             let foodTypes = response.text();
             foodTypes = (await foodTypes).replaceAll("\"","")
-            foodTypes = (foodTypes).substring(1,(foodTypes).length - 1);
-            let foodList = (foodTypes).split(",");
+            foodTypes = (await (foodTypes)).substring(1,(await (foodTypes)).length - 1);
+            let foodList = (await (foodTypes)).split(",");
             foodDropDownList = document.querySelector(".foodType");
             foodList.forEach( foodType => foodDropDownList.add(new Option(foodType)));
             console.log(foodDropDownList);
@@ -19,7 +19,25 @@
         }
 
     }
-    getFoodTypes();
+    async function getCities(state){
+        try{
+            let response = await fetch("http://localhost:8080/filter/cities?state=" + state);
+            let cityOptions = response.text();
+            cityOptions = (await cityOptions).replaceAll("\"","")
+            cityOptions = (await (cityOptions)).substring(1,(await (cityOptions)).length - 1);
+            let options = (await (cityOptions)).split(",");
+            options.forEach(city => document.querySelector(".cities").add(new Option(city)));
+        }
+        catch (error)
+        {
+            console.error("STILL AIN'T GOOD");
+        }
+    }
+
+    let cities = document.getElementById("city");
+    cities.addEventListener("click",getCities(document.getElementById("state")))
+
+    // getFoodTypes();
 
 
 </script>
@@ -38,7 +56,7 @@
             .menu {display: none}
             td {
                 font-size: 20px;
-                font-family: "Georgia", Serif;
+                font-family: "Georgia", sans-serif;
             }
         </style>
     </head>
@@ -163,7 +181,8 @@
                                     <td>City</td>
                                     <td><label>
                                         <!--- USA City -->
-                                        <input style="width: 270px" type="text" id="city" name="city">
+                                        <select style="width: 270px" class="cities" id="city" name="city">
+                                        </select>
                                     </label></td>
                                 </tr>
                                 <tr>

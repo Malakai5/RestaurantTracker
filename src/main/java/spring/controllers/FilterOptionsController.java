@@ -19,4 +19,21 @@ public class FilterOptionsController {
             results.add("Chinese");
             return results;
         }
+
+    @RequestMapping(value = "/cities", method = RequestMethod.GET)
+    public List<String> getCityOptions(@RequestParam(value = "state", defaultValue = "EMPTY") String state)
+    {
+        List<String> results = new ArrayList<>();
+        System.out.println(state);
+        if (state.equals("FL"))
+        {
+            System.out.println("OKAYYYY");
+            results.add("Tampa");
+            results.add("Orlando");
+            results.add("Jacksonville");
+            results.add("Miami");
+            return results;
+        }
+        return results;
+    }
 }

@@ -1,6 +1,7 @@
 package spring.controllers;
 
 import connections.databaseOperations.SQLWriter;
+import objects.Restaurant;
 import objects.models.RestaurantSearchForm;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,15 @@ public class FilterOptionsController {
     }
 
     @PostMapping(value = "/restaurantSearchForm", consumes = "application/json", produces = "application/json")
-    public RestaurantSearchForm getRestaurantSearchForm(@RequestBody RestaurantSearchForm form){
-        System.out.println("Hello my friend from " + form.city );
-        return form;
+    public List<Restaurant> getRestaurantSearchForm(@RequestBody RestaurantSearchForm form){
+        List<Integer> restaurantIds = SQLWriter.searchForRestaurants(form);
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurantIds.forEach(id -> restaurants.add(SQLWriter.getRestaurant(id)));
+        return restaurants;
     }
+
+//    @GetMapping(value = "/searchResults")
+//    public List<Restaurant> getSearchResults(){
+//        get
+//    }
 }

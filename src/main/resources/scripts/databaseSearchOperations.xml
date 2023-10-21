@@ -17,7 +17,9 @@
     </bean>
 
     <bean id="search.for.restaurants" class="java.lang.String">
-        <constructor-arg value="SELECT restaurant_id FROM restaurant_table WHERE CONDITIONS"/>
+        <constructor-arg value="SELECT restaurant_id FROM restaurant_table
+        INNER JOIN locations_table ON
+        restaurant_table.location_id = locations_table.location_id WHERE CONDITIONS"/>
     </bean>
 
 

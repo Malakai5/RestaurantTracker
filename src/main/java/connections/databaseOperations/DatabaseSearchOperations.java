@@ -59,12 +59,12 @@ public class DatabaseSearchOperations {
     private String makeConditionStatement(RestaurantSearchForm form){
         StringBuilder sb = new StringBuilder("restaurant_name=\"" + form.restaurantName + "\"");
 
-//        if (!form.city.isEmpty()) {
-//            sb.append("AND city=").append(form.city).append("\"");
-//        }
-//        else if (!form.state.isEmpty()) {
-//            sb.append("AND state=\"").append(form.state).append("\"");
-//        }
+        if (!form.city.isEmpty()) {
+            sb.append("AND city=\"").append(form.city).append("\"");
+        }
+        else if (!form.state.isEmpty()) {
+            sb.append("AND state=\"").append(form.state).append("\"");
+        }
         if (!form.priceRange.isEmpty()) {
             sb.append(" AND price_range=\"").append(form.priceRange).append("\"");
         }

@@ -8,13 +8,16 @@
       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <context:annotation-config/>
 
-    <bean id="add.location" class="java.lang.String">
-        <constructor-arg value="INSERT INTO locations_table(state, city, zipcode, street_name, address_number, unit_number)
-         VALUES (:state, :city, :zipcode, :street_name, :address_number, :unit_number);"/>
+    <bean id="select.column" class="java.lang.String">
+        <constructor-arg value="SELECT columnName FROM wantedTable_table"/>
     </bean>
 
-    <bean id="select.location" class="java.lang.String">
-        <constructor-arg value="SELECT * FROM locations_table WHERE location_id = :id"/>
+    <bean id="select.cities" class="java.lang.String">
+        <constructor-arg value="SELECT city from locations_table where state= :state"/>
+    </bean>
+
+    <bean id="search.for.restaurants" class="java.lang.String">
+        <constructor-arg value="SELECT restaurant_id FROM restaurant_table WHERE CONDITIONS"/>
     </bean>
 
 

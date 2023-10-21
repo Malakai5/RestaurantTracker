@@ -7,6 +7,7 @@ import foodItems.Drink;
 import foodItems.Entree;
 import objects.Location;
 import objects.Restaurant;
+import objects.models.RestaurantSearchForm;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
@@ -17,10 +18,10 @@ public class SQLWriter {
 
     private static final NamedParameterJdbcTemplate queryParameter
             = new NamedParameterJdbcTemplate(Driver.getDataSource());
-
     public static LocationSQLOperations locationSQLOperations = new LocationSQLOperations(queryParameter);
     public static RestaurantSQLOperations restaurantSQLOperations = new RestaurantSQLOperations(queryParameter);
     public static ConsumableSQLOperations consumableSQLOperations = new ConsumableSQLOperations(queryParameter);
+    public static DatabaseSearchOperations databaseSearchOperations = new DatabaseSearchOperations(queryParameter);
 
     public static void addNewLocation(Location location){
          locationSQLOperations.addNewLocation(location);
@@ -70,16 +71,14 @@ public class SQLWriter {
     }
 
     public static List<String> getColumn(String columnName, String wantedTable){
-        String sqlQuery = (String) BeanSearcher.getInstance().lookUp("select.column");
-        sqlQuery = sqlQuery.replace("wantedTable", wantedTable);
-        sqlQuery = sqlQuery.replace("columnName", columnName);
-        List<String> column = new ArrayList<>();
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-       queryParameter.query(sqlQuery, mapSqlParameterSource, rs ->{
-            Object object = rs.getObject(columnName);
-            column.add(String.valueOf(object));
-        });
-        return column;
+        return databaseSearchOperations.getColumn(columnName, wantedTable);
     }
+    public static List<String> getCities(String state){
+        return databaseSearchOperations.getCities(state);
+    }
+    public static List<Integer> searchForRestaurants(RestaurantSearchForm form){
+        return databaseSearchOperations.searchForRestaurants(form);
+    }
+
 
 }

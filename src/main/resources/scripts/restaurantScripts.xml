@@ -10,13 +10,12 @@
 
     <bean id="add.restaurant" class="java.lang.String">
         <constructor-arg value="INSERT INTO restaurant_table(restaurant_name, food_type, location_id, price_range)
-        VALUES (:restaurant_name, :food_type, :location_id, :price_range);">
-        </constructor-arg>
+        VALUES (:restaurant_name, :food_type, :location_id, :price_range);"/>
     </bean>
 
     <bean id="select.restaurant" class="java.lang.String">
-        <constructor-arg value="SELECT * FROM restaurant_table WHERE restaurant_id = :id">
-        </constructor-arg>
+        <constructor-arg value="SELECT * FROM restaurant_table WHERE restaurant_id = :id"/>
     </bean>
+
 
 </beans>

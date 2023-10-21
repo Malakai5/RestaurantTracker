@@ -1,46 +1,5 @@
 <!DOCTYPE html>
 <html lang="">
-<script>
-    let foodDropDownList;
-    async function getFoodTypes() {
-        try{
-            let response = await fetch("http://localhost:8080/filter/foodType");
-            let foodTypes = response.text();
-            foodTypes = (await foodTypes).replaceAll("\"","")
-            foodTypes = (await (foodTypes)).substring(1,(await (foodTypes)).length - 1);
-            let foodList = (await (foodTypes)).split(",");
-            foodDropDownList = document.querySelector(".foodType");
-            foodList.forEach( foodType => foodDropDownList.add(new Option(foodType)));
-            console.log(foodDropDownList);
-        }
-        catch (error)
-        {
-            console.error("Things ain't working");
-        }
-
-    }
-    async function getCities(state){
-        try{
-            let response = await fetch("http://localhost:8080/filter/cities?state=" + state);
-            let cityOptions = response.text();
-            cityOptions = (await cityOptions).replaceAll("\"","")
-            cityOptions = (await (cityOptions)).substring(1,(await (cityOptions)).length - 1);
-            let options = (await (cityOptions)).split(",");
-            options.forEach(city => document.querySelector(".cities").add(new Option(city)));
-        }
-        catch (error)
-        {
-            console.error("STILL AIN'T GOOD");
-        }
-    }
-
-    let cities = document.getElementById("city");
-    cities.addEventListener("click",getCities(document.getElementById("state")))
-
-    // getFoodTypes();
-
-
-</script>
     <head>
         <title>Search page</title>
         <meta charset="UTF-8">
@@ -53,6 +12,10 @@
         <style>
             body, html {height: 100%}
             body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+            input,select,textarea {
+                width: 100%;
+                box-sizing: border-box;
+            }
             .menu {display: none}
             td {
                 font-size: 20px;
@@ -89,24 +52,24 @@
                 </div>
                 <div class="w3-row w3-center w3-border w3-border-dark-grey" id="searchBox">
                     Enter in your wanted details
-                    <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm">
-                        <form>
-                            <table>
 
+                    <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm">
+                        <form id="resSearch">
+                            <table>
                                 <tr>
                                     <th colspan="2">Let's find us a restaurant</th>
                                 </tr>
                                 <tr>
                                     <td>Restaurant's Name</td>
                                     <td><label>
-                                        <input type="text" size="25" name="Name" required >
+                                        <input type="text" name="restaurantName" required="required" >
                                     </label></td>
                                 </tr>
                                 <tr>
                                     <td>State</td>
                                     <td><label>
                                         <!--- USA states -->
-                                        <select style="width: 270px" id="state" name="state" >
+                                        <select id="state"  name="state" onchange="getCities()" >
                                             <option value="">Select state</option>
                                             <option value="AL">Alabama</option>
                                             <option value="AK">Alaska</option>
@@ -181,7 +144,8 @@
                                     <td>City</td>
                                     <td><label>
                                         <!--- USA City -->
-                                        <select style="width: 270px" class="cities" id="city" name="city">
+                                        <select id="city" name="city" >
+                                            <option></option>
                                         </select>
                                     </label></td>
                                 </tr>
@@ -190,16 +154,29 @@
                                     </td>
                                     <td><label>
                                         <!---  Food Types -->
-                                        <select style="width: 270px" class="foodType" id="foodType" name="foodType"></select>
+                                        <select id="foodType" name="foodType">
+                                            <option></option>
+                                        </select>
                                     </label></td>
                                 </tr>
-
-
-
+                                <tr>
+                                    <td>Price Range
+                                    </td>
+                                    <td><label>
+                                        <!---  price Range -->
+                                        <select id="priceRange" name="priceRange">
+                                            <option></option>
+                                            <option value="$">Chump Change</option>
+                                            <option value="$$">Lil bit of money</option>
+                                            <option value="$$$">Big ballin</option>
+                                            <option value="$$$$">THAT STEAK IS HOW MUCH 👀</option>
+                                        </select>
+                                    </label></td>
+                                </tr>
                             </table>
-
-
+<!--                            <input type="submit">-->
                         </form>
+                        <button id="searchButton">Find me Sumthin</button>
                     </div>
 
                 </div>
@@ -210,5 +187,70 @@
         </div>
     </div>
     </body>
+    <script>
+        let foodDropDownList;
+        let searchButton = document.getElementById("searchButton");
+
+        async function getFoodTypes() {
+            try{
+                let response = await fetch("http://localhost:8080/filter/foodType");
+                let foodTypes = response.text();
+                foodTypes = (await foodTypes).replaceAll("\"","")
+                foodTypes = (await (foodTypes)).substring(1,(await (foodTypes)).length - 1);
+                let foodList = (await (foodTypes)).split(",");
+                foodDropDownList = document.querySelector("#foodType");
+                foodList.forEach( foodType => foodDropDownList.add(new Option(foodType)));
+            }
+            catch (error)
+            {
+                console.error("Things ain't working");
+            }
+
+        }
+        async function getCities(){
+            try{
+                let selectBox = document.getElementById("state");
+                let selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                let response = await fetch("http://localhost:8080/filter/cities?state=" + selectedValue);
+                let cityOptions = response.text();
+                cityOptions = (await cityOptions).replaceAll("\"","")
+                cityOptions = (await (cityOptions)).substring(1,(await (cityOptions)).length - 1);
+                let options = (await (cityOptions)).split(",");
+                options.forEach(city => document.querySelector("#city").add(new Option(city)));
+            }
+            catch (error)
+            {
+                console.error("STILL AIN'T GOOD");
+            }
+        }
+        async function searchButtonClicked(){
+
+            let data = new FormData(document.getElementById("resSearch"));
+            // let value = Object.fromEntries(data.entries());
+            // let form = document.getElementById("resSearch");
+
+            let object = {};
+            data.forEach((value, key) => object[key] = value);
+
+            fetch('http://localhost:8080/filter/restaurantSearchForm', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            })
+                .then(response => response.json())
+                .then(response => console.log(response))
+        }
+
+        searchButton.addEventListener("click", searchButtonClicked);
+
+
+
+        getFoodTypes();
+
+
+    </script>
 
 </html>

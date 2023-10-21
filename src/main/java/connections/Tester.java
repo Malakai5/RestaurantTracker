@@ -4,6 +4,7 @@ import connections.databaseOperations.SQLWriter;
 import foodItems.*;
 import objects.Location;
 import objects.Restaurant;
+import objects.models.RestaurantSearchForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,17 +22,18 @@ public class Tester {
         testDrink.setName("Maple Pancake Latte");
         testDrink.setTasteElements(tasteElements);
         testDrink.setDairy(true);
-        testDrink.setRestaurantID(3);
+        testDrink.setRestaurantID(1);
 
         List<String> mainIngredients = new ArrayList<>();
-        mainIngredients.add("Chocolate");
-        mainIngredients.add("PeanutButter");
-        mainIngredients.add("Ice cream");
+        mainIngredients.add("Apple");
+        mainIngredients.add("Piecrust");
 
         Dessert testDessert = new Dessert(mainIngredients);
         testDessert.setDairy(true);
-        testDessert.setFavorite(true);
-        testDessert.setName("Reese's Ice Cream Bar");
+        testDessert.setHot(true);
+        testDessert.setFavorite(false);
+        testDessert.setName("Apple Pie");
+        testDessert.setRestaurantID(1);
 
         Appetizer testAppetizer = new Appetizer("Shrimp", "Fried", false, tasteElements);
         testAppetizer.setName("Bang Bang Shrimp");
@@ -43,10 +45,20 @@ public class Tester {
         testEntree.setMeat(true);
         testEntree.setHot(true);
 
-        SQLWriter.getColumn("food_type", "restaurant").forEach(System.out::println);
+        RestaurantSearchForm form = new RestaurantSearchForm();
+        form.restaurantName = "Bob Evans";
+        form.city = "Tampa";
+        form.state = "FL";
+        form.priceRange = "$";
+        form.foodType = "Breakfast";
+
+        System.out.println(SQLWriter.getRestaurant(SQLWriter.searchForRestaurants(form).get(0)).toString());
+
 
 
 //==========================TESTED METHODS THAT WORK======================
+//        SQLWriter.getCities("FL").forEach(System.out::println);
+//        SQLWriter.getColumn("food_type", "restaurant").forEach(System.out::println);
 //        SQLWriter.addNewLocation(testLocation);
 //        SQLWriter.addNewRestaurant(testRestaurant);
 //        System.out.println(SQLWriter.getLocation(3).toString());

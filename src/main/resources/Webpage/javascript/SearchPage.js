@@ -1,5 +1,4 @@
 let foodDropDownList;
-let searchButton = document.getElementById("searchButton");
 
 async function getFoodTypes() {
     try{
@@ -33,9 +32,9 @@ async function getCities(){
         console.error(error);
     }
 }
-async function searchButtonClicked(){
+async function searchButtonClicked(elementId){
 
-    let data = new FormData(document.getElementById("resSearch"));
+    let data = new FormData(document.getElementById(elementId));
     // let value = Object.fromEntries(data.entries());
     // let form = document.getElementById("resSearch");
 
@@ -53,9 +52,14 @@ async function searchButtonClicked(){
         .then(response => response.json())
         .then(response => console.log(response))
 }
+function revealSearchForm(elementId){
+    let searchForm = document.getElementById(elementId)
+    if (searchForm.style.display === "none") {
+        searchForm.style.display = "block";
+    }
+    else {
+        searchForm.style.display = "none";
+    }
 
-searchButton.addEventListener("click", searchButtonClicked);
+}
 
-
-
-getFoodTypes();

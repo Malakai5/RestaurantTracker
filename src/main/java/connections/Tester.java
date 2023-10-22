@@ -52,7 +52,7 @@ public class Tester {
         form.priceRange = "$";
         form.foodType = "Breakfast";
 
-        System.out.println(SQLWriter.getRestaurant(SQLWriter.searchForRestaurants(form).get(0)).toString());
+//        System.out.println(SQLWriter.getRestaurant(SQLWriter.searchForRestaurants(form).get(0)).toString());
 
 
 

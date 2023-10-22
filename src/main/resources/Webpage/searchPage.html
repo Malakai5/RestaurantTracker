@@ -24,7 +24,9 @@
         </style>
     </head>
 
-    <body>
+    <body onpageshow="getFoodTypes()">
+
+
     <!-- Navbar (sit on top) -->
     <div class="w3-top w3-hide-small">
         <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
@@ -43,17 +45,17 @@
             <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">LET's GET TO SEARCHING</h1>
             <div class="class=row w3-khaki" style="padding:128px 16px">
                 <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                    <a href="javascript:void(0)" onclick="openRestaurantForm(event, 'Restaurant');">
+                    <a onclick=revealSearchForm("RestaurantForm")>
                         <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
                     </a>
-                    <a href="javascript:void(0)" onclick="openConsumablesSearch(event, 'Consumables');">
+                    <a onclick=revealSearchForm("ConsumableForm")>
                         <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Consumables</div>
                     </a>
                 </div>
                 <div class="w3-row w3-center w3-border w3-border-dark-grey" id="searchBox">
                     Enter in your wanted details
 
-                    <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm">
+                    <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm" style="display: none">
                         <form id="resSearch">
                             <table>
                                 <tr>
@@ -174,9 +176,48 @@
                                     </label></td>
                                 </tr>
                             </table>
-<!--                            <input type="submit">-->
                         </form>
-                        <button id="searchButton">Find me Sumthin</button>
+                        <button id="searchButton" onclick = searchButtonClicked("resSearch")>Find me Sumthin</button>
+                    </div>
+
+                    <div class="w3-row w3-center w3-border w3-border-dark-grey" id="ConsumableForm" style="display: none">
+                        <form id="conSearch">
+                            <table>
+                                <tr>
+                                    <th colspan="2">Oh you one of them picky ones</th>
+                                </tr>
+                                <tr>
+                                    <td>Consumable's Name</td>
+                                    <td><label>
+                                        <input type="text" name="consumableName">
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <td>Consumable Type
+                                    </td>
+                                    <td><label>
+                                        <!---  Consumable Types -->
+                                        <select id="consumableType" name="consumableType">
+                                            <option value="Entree">Entree</option>
+                                            <option value="Appetizer">Appetizer</option>
+                                            <option value="Dessert">Dessert</option>
+                                            <option value="Drink">Drink</option>
+                                        </select>
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <td>Taste Elements
+                                    </td>
+                                    <td><label>
+                                        <!---  Taste Elements -->
+                                        <input type="checkbox" value="SWEET"> SWEET
+                                        <input type="checkbox" value="SAVORY"> SAVORY
+                                        <input type="checkbox" value="SALTY"> SALTY
+                                    </label></td>
+                                </tr>
+
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>

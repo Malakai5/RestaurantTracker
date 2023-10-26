@@ -35,7 +35,6 @@ public class SQLWriter {
     }
     public static Restaurant getRestaurant(int restaurantID){
         Restaurant restaurant = restaurantSQLOperations.getRestaurant(restaurantID);
-        System.out.println(restaurant.getLocationID());
         restaurant.setLocation(getLocation(restaurant.getLocationID()));
         return restaurant;
     }

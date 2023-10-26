@@ -9,8 +9,8 @@
     <context:annotation-config/>
 
     <bean id="add.restaurant" class="java.lang.String">
-        <constructor-arg value="INSERT INTO restaurant_table(restaurant_name, food_type, location_id, price_range)
-        VALUES (:restaurant_name, :food_type, :location_id, :price_range);"/>
+        <constructor-arg value="INSERT INTO restaurant_table(restaurant_name, food_type, location_id, price_range, is_favorite)
+        VALUES (:restaurant_name, :food_type, :location_id, :price_range, :is_favorite);"/>
     </bean>
 
     <bean id="select.restaurant" class="java.lang.String">

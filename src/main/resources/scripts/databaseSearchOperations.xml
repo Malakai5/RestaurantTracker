@@ -22,5 +22,10 @@
         restaurant_table.location_id = locations_table.location_id WHERE CONDITIONS"/>
     </bean>
 
+    <bean id="search.for.consumables" class="java.lang.String">
+        <constructor-arg value="SELECT consumable_id FROM consumable_table
+        WHERE CONDITIONS"/>
+    </bean>
+
 
 </beans>

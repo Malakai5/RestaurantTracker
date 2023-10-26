@@ -18,6 +18,8 @@ public class Consumable {
 
     protected int restaurantID;
 
+    protected double price;
+
     protected boolean isFavorite = false;
     protected boolean hasDairy = false;
     protected boolean hasMeat = false;
@@ -26,7 +28,6 @@ public class Consumable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -91,6 +92,14 @@ public class Consumable {
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public List<TasteElement> getTasteElementList(String tasteElementString){

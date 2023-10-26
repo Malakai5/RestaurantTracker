@@ -51,15 +51,38 @@ async function searchButtonClicked(elementId){
     })
         .then(response => response.json())
         .then(response => console.log(response))
+    console.log(JSON.stringify(object));
 }
-function revealSearchForm(elementId){
-    let searchForm = document.getElementById(elementId)
-    if (searchForm.style.display === "none") {
-        searchForm.style.display = "block";
+function revealElement(elementId){
+    let element = document.getElementById(elementId)
+    if (element.style.display === "none") {
+        element.style.display = "block";
     }
     else {
-        searchForm.style.display = "none";
+        element.style.display = "none";
     }
+}
+
+function checkConsumableType() {
+    let select = document.getElementById("consumableType");
+    let consumableType = select.value
+    if (consumableType === "Entree" || consumableType === "Appetizer"){
+        document.getElementById("mealSelect").style.display="table-row";
+        document.getElementById("alcoholSelect").style.display="none";
+        document.getElementById("caffeineSelect").style.display="none";
+
+    }
+    else if (consumableType === "Drink"){
+        document.getElementById("alcoholSelect").style.display="table-row";
+        document.getElementById("caffeineSelect").style.display="table-row";
+        document.getElementById("mealSelect").style.display="none";
+    }
+    else{
+        document.getElementById("mealSelect").style.display="none";
+        document.getElementById("alcoholSelect").style.display="none";
+        document.getElementById("caffeineSelect").style.display="none";
+    }
+
 
 }
 

@@ -45,10 +45,10 @@
             <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">LET's GET TO SEARCHING</h1>
             <div class="class=row w3-khaki" style="padding:128px 16px">
                 <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                    <a onclick=revealSearchForm("RestaurantForm")>
+                    <a onclick=revealElement("RestaurantForm")>
                         <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
                     </a>
-                    <a onclick=revealSearchForm("ConsumableForm")>
+                    <a onclick=revealElement("ConsumableForm")>
                         <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Consumables</div>
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                                 <tr>
                                     <td>Restaurant's Name</td>
                                     <td><label>
-                                        <input type="text" name="restaurantName" required="required" >
+                                        <input type="text" name="restaurantName" >
                                     </label></td>
                                 </tr>
                                 <tr>
@@ -175,6 +175,18 @@
                                         </select>
                                     </label></td>
                                 </tr>
+
+                                <tr>
+                                    <td>Malakai's Fav?</td>
+                                    <!--- Favorite Question -->
+                                    <td>
+                                        <select id="favoriteRestaurant" name="favorite">
+                                            <option></option>
+                                            <option value="false">No</option>
+                                            <option value="true">Yes</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             </table>
                         </form>
                         <button id="searchButton" onclick = searchButtonClicked("resSearch")>Find me Sumthin</button>
@@ -193,11 +205,11 @@
                                     </label></td>
                                 </tr>
                                 <tr>
-                                    <td>Consumable Type
-                                    </td>
+                                    <td>Consumable Type</td>
                                     <td><label>
                                         <!---  Consumable Types -->
-                                        <select id="consumableType" name="consumableType">
+                                        <select id="consumableType" name="consumableType" onchange="checkConsumableType()" >
+                                            <option value=""></option>
                                             <option value="Entree">Entree</option>
                                             <option value="Appetizer">Appetizer</option>
                                             <option value="Dessert">Dessert</option>
@@ -205,15 +217,92 @@
                                         </select>
                                     </label></td>
                                 </tr>
-                                <tr>
-                                    <td>Taste Elements
+
+                                <tr id="mealSelect" style="display: none">
+                                    <td>Time of Meal</td>
+                                    <!--- Time of Meal -->
+                                    <td>
+                                        <select id="mealTime" name="consumableType">
+                                            <option value="Breakfast">Breakfast</option>
+                                            <option value="Brunch">Brunch</option>
+                                            <option value="Lunch">Lunch</option>
+                                            <option value="Dinner">Dinner</option>
+                                        </select>
                                     </td>
+                                </tr>
+
+                                <tr id="alcoholSelect" style="display: none">
+                                    <td>Alcoholic?</td>
+                                    <!--- Alcohol Question -->
+                                    <td>
+                                        <select id="alcohol" name="isAlcoholic">
+                                            <option></option>
+                                            <option value="false">No</option>
+                                            <option value="true">Yes</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr id="caffeineSelect" style="display: none">
+                                    <td>Caffeinated?</td>
+                                    <!--- Caffeine Question -->
+                                    <td>
+                                        <select id="caffeine" name="hasHighCaffeine">
+                                            <option></option>
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Has Meat?</td>
+                                    <!--- Meat Question -->
+                                    <td>
+                                        <select id="hasMeat" name="hasMeat">
+                                            <option></option>
+                                            <option value="false">No</option>
+                                            <option value="true">Yes</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Has Dairy?</td>
+                                    <!--- Dairy Question -->
+                                    <td>
+                                        <select id="hasDairy" name="hasDairy">
+                                            <option></option>
+                                            <option value="false">No</option>
+                                            <option value="true">Yes</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Main Taste Elements</td>
                                     <td><label>
-                                        <!---  Taste Elements -->
-                                        <input type="checkbox" value="SWEET"> SWEET
-                                        <input type="checkbox" value="SAVORY"> SAVORY
-                                        <input type="checkbox" value="SALTY"> SALTY
+                                        <select id="tasteElement" name="mainTasteElement">
+                                            <option value="Savory">Savory</option>
+                                            <option value="Sweet">Sweet</option>
+                                            <option value="Bitter">Bitter</option>
+                                            <option value="Salty">Salty</option>
+                                            <option value="Sour">Sour</option>
+                                            <option value="Uma-mi">Uma-mi</option>
+                                        </select>
                                     </label></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Malakai's Fav?</td>
+                                    <!--- Favorite Question -->
+                                    <td>
+                                        <select id="favoriteConsumable" name="favorite">
+                                            <option></option>
+                                            <option value="false">No</option>
+                                            <option value="true">Yes</option>
+                                        </select>
+                                    </td>
                                 </tr>
 
                             </table>

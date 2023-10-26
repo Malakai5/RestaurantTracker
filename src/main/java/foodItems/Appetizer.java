@@ -63,6 +63,7 @@ public class Appetizer extends Consumable{
                 ",\n isSpicy = " + isSpicy +
                 ",\n isHot = " + isHot +
                 ",\n vegetarian = " + isVegan() +
+                ",\n price = $" + price +
                 "\n}";
     }
 }

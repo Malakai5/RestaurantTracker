@@ -4,8 +4,10 @@ public class Restaurant {
     private String name;
     private Location location;
     private String foodStyle;
-    private String priceRange; //TODO Find a better way to input "$-$$$$" Range
+    private String priceRange;
     private int locationID;
+
+    private boolean favorite;
 
     public Restaurant() {
     }
@@ -32,6 +34,7 @@ public class Restaurant {
     public String getPriceRange() {
         return priceRange;
     }
+
     public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
     }
@@ -59,6 +62,21 @@ public class Restaurant {
     public void setLocation(Location location) {
         this.location = location;
     }
-
+    public int isFavorite() {
+        if (favorite) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    public void setFavorite(int favorite) {
+        if (favorite == 0) {
+            this.favorite = false;
+        }
+        else {
+            this.favorite = true;
+        }
+    }
 
 }

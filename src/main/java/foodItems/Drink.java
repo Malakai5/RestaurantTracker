@@ -1,8 +1,10 @@
 package foodItems;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public class Drink extends Consumable {
+public class Drink extends Consumable implements FoodItem {
 
     private boolean isAlcoholic = false;
     private boolean highCaffeine = false;
@@ -55,4 +57,37 @@ public class Drink extends Consumable {
                 "\n}";
     }
 
+    @Override
+    public String buildSQLColumnsString() {
+        return "consumable_name, consumable_type, taste_elements, " +
+                "restaurant_id, price, has_dairy, " +
+                "is_spicy, is_hot, is_favorite, is_alcoholic, high_caffeine";
+    }
+
+    @Override
+    public String buildSQLValueString() {
+        return "\"" + name + "\", \""  + "Drink\", \"" + getTasteElementString(tasteElements)
+                + "\", " + restaurantID + ", " + price + ", " + hasDairy + ", " + isSpicy + ", " + isHot
+                + ", " + isFavorite + ", " + isAlcoholic + ", " + highCaffeine;
+    }
+
+    @Override
+    public void parseResultSet(ResultSet rs) {
+        try {
+            setAlcoholic(rs.getBoolean("is_alcoholic"));
+            setConsumableType(rs.getString("consumable_type"));
+            setHighCaffeine(rs.getBoolean("high_caffeine"));
+            setHot(rs.getBoolean("is_hot"));
+            setDairy(rs.getBoolean("has_dairy"));
+            setFavorite(rs.getBoolean("is_favorite"));
+            setMeat(rs.getBoolean("has_meat"));
+            setSpicy(rs.getBoolean("is_spicy"));
+            setName(rs.getString("consumable_name"));
+            setRestaurantID(rs.getInt("restaurant_id"));
+            setPrice(rs.getDouble("price"));
+            setTasteElements(getTasteElementList(rs.getString("taste_elements")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

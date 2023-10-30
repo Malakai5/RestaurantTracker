@@ -16,13 +16,13 @@
         <constructor-arg value="SELECT city from locations_table where state= :state"/>
     </bean>
 
-    <bean id="search.for.restaurants" class="java.lang.String">
+    <bean id="search.for.restaurant" class="java.lang.String">
         <constructor-arg value="SELECT restaurant_id FROM restaurant_table
         INNER JOIN locations_table ON
         restaurant_table.location_id = locations_table.location_id WHERE CONDITIONS"/>
     </bean>
 
-    <bean id="search.for.consumables" class="java.lang.String">
+    <bean id="search.for.consumable" class="java.lang.String">
         <constructor-arg value="SELECT consumable_id FROM consumable_table
         WHERE CONDITIONS"/>
     </bean>

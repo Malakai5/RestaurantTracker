@@ -1,4 +1,6 @@
 package objects.models;
 
-public class SearchForm {
+public interface SearchForm {
+    public String buildConditionsString();
+    public String getSearchFormType();
 }

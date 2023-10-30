@@ -1,17 +1,14 @@
 package connections.databaseOperations;
 
 import connections.Driver;
-import foodItems.Appetizer;
-import foodItems.Dessert;
-import foodItems.Drink;
-import foodItems.Entree;
+import foodItems.*;
 import objects.Location;
 import objects.Restaurant;
+import objects.models.ConsumableSearchForm;
 import objects.models.RestaurantSearchForm;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import objects.models.SearchForm;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SQLWriter {
@@ -38,35 +35,11 @@ public class SQLWriter {
         restaurant.setLocation(getLocation(restaurant.getLocationID()));
         return restaurant;
     }
-
-    public static void addNewDrink(Drink drink){
-        consumableSQLOperations.addNewDrink(drink);
+    public static void addNewConsumable(FoodItem consumable){
+        consumableSQLOperations.addNewConsumable(consumable);
     }
-    public static Drink getDrink(int drinkID){
-        return consumableSQLOperations.getDrink(drinkID);
-    }
-
-    public static void addNewDessert(Dessert dessert){
-        consumableSQLOperations.addNewDessert(dessert);
-    }
-    public static Dessert getDessert(int dessertID){
-        return consumableSQLOperations.getDessert(dessertID);
-    }
-
-
-    public static void addNewAppetizer(Appetizer appetizer){
-        consumableSQLOperations.addNewAppetizer(appetizer);
-    }
-    public static Appetizer getAppetizer(int appetizerID){
-       return consumableSQLOperations.getAppetizer(appetizerID);
-    }
-
-
-    public static void addNewEntree(Entree entree){
-        consumableSQLOperations.addNewEntree(entree);
-    }
-    public static Entree getEntree(int entreeID){
-        return consumableSQLOperations.getEntree(entreeID);
+    public static FoodItem getConsumable(int consumableID){
+       return consumableSQLOperations.getConsumable(consumableID);
     }
 
     public static List<String> getColumn(String columnName, String wantedTable){
@@ -75,9 +48,12 @@ public class SQLWriter {
     public static List<String> getCities(String state){
         return databaseSearchOperations.getCities(state);
     }
-    public static List<Integer> searchForRestaurants(RestaurantSearchForm form){
-        return databaseSearchOperations.searchForRestaurants(form);
+
+    public static List<Integer> processSearchRequest(SearchForm form){
+        return databaseSearchOperations.processSearchRequest(form);
     }
+
+
 
 
 }

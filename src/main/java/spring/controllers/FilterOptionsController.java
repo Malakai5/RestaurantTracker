@@ -1,5 +1,10 @@
 package spring.controllers;
 
+import connections.databaseOperations.SQLWriter;
+import foodItems.Consumable;
+import objects.Restaurant;
+import objects.models.ConsumableSearchForm;
+import objects.models.RestaurantSearchForm;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,31 +14,27 @@ import java.util.List;
 @RequestMapping("/filter")
 public class FilterOptionsController {
 
-        @RequestMapping(value = "/foodType", method = RequestMethod.GET)
-        public List<String> getFoodTypeOptions()
-        {
-            List<String> results = new ArrayList<>();
-            results.add("Italian");
-            results.add("Southern");
-            results.add("Cajun");
-            results.add("Chinese");
-            return results;
-        }
+    @RequestMapping(value = "/foodType", method = RequestMethod.GET)
+    public List<String> getFoodTypeOptions() {
+        return SQLWriter.getColumn("food_type", "restaurant");
+    }
 
     @RequestMapping(value = "/cities", method = RequestMethod.GET)
-    public List<String> getCityOptions(@RequestParam(value = "state", defaultValue = "EMPTY") String state)
-    {
-        List<String> results = new ArrayList<>();
-        System.out.println(state);
-        if (state.equals("FL"))
-        {
-            System.out.println("OKAYYYY");
-            results.add("Tampa");
-            results.add("Orlando");
-            results.add("Jacksonville");
-            results.add("Miami");
-            return results;
-        }
-        return results;
+    public List<String> getCityOptions(@RequestParam(value = "state", defaultValue = "EMPTY") String state) {
+        return SQLWriter.getCities(state);
     }
+
+    @PostMapping(value = "/SearchForm", consumes = "application/json", produces = "application/json")
+    public List<Restaurant> consumeRestaurantSearchForm(@RequestBody RestaurantSearchForm form){
+        List<Integer> restaurantIds = SQLWriter.processSearchRequest(form);
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurantIds.forEach(id -> restaurants.add(SQLWriter.getRestaurant(id)));
+        return restaurants;
+    }
+
+//    @PostMapping(value = "/consumableSearchForm", consumes = "application/json", produces = "application/json")
+//    public List<Consumable> consumeConsumableSearchForm(@RequestBody ConsumableSearchForm form){
+//        List<Integer> consumableIDs = SQLWriter.processConsumableSearchForm(form);
+//        List<>
+//    }
 }

@@ -1,8 +1,10 @@
 package foodItems;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-public class Appetizer extends Consumable{
+public class Appetizer extends Consumable implements FoodItem {
 
     private String mainIngredient;
     private String methodOfCooking;
@@ -16,7 +18,9 @@ public class Appetizer extends Consumable{
         this.tasteElements = tasteElements;
     }
 
-    public Appetizer(){}
+    public Appetizer(){
+        this.consumableType = "Appetizer";
+    }
 
     public List<TasteElement> getTasteElements() {
         return tasteElements;
@@ -63,6 +67,43 @@ public class Appetizer extends Consumable{
                 ",\n isSpicy = " + isSpicy +
                 ",\n isHot = " + isHot +
                 ",\n vegetarian = " + isVegan() +
+                ",\n price = $" +  price +
                 "\n}";
+    }
+
+    @Override
+    public String buildSQLColumnsString() {
+        return "consumable_name, consumable_type, taste_elements, " +
+                "main_ingredients, method_of_cooking, restaurant_id, price, has_dairy, " +
+                "has_meat, is_spicy, is_hot, is_favorite, is_shareable";
+    }
+
+    @Override
+    public String buildSQLValueString() {
+        return "\"" + name + "\", \"" + "Appetizer\", \"" + getTasteElementString(tasteElements) + "\", \""
+                + mainIngredient + "\", \"" + methodOfCooking + "\", "  + restaurantID + ", " + price + ", " + hasDairy
+                + ", " + hasMeat + ", " + isSpicy + ", " + isHot + ", " + isFavorite + ", " + shareable;
+    }
+
+    @Override
+    public void parseResultSet(ResultSet rs) {
+        try {
+            setHot(rs.getBoolean("is_hot"));
+            setConsumableType(rs.getString("consumable_type"));
+            setDairy(rs.getBoolean("has_dairy"));
+            setFavorite(rs.getBoolean("is_favorite"));
+            setMeat(rs.getBoolean("has_meat"));
+            setSpicy(rs.getBoolean("is_spicy"));
+            setName(rs.getString("consumable_name"));
+            setRestaurantID(rs.getInt("restaurant_id"));
+            setShareable(rs.getBoolean("is_shareable"));
+            setMainIngredient(rs.getString("main_ingredients"));
+            setMethodOfCooking(rs.getString("method_of_cooking"));
+            setPrice(rs.getDouble("price"));
+            setTasteElements(getTasteElementList(rs.getString("taste_elements")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -11,18 +11,25 @@ public class Consumable {
         SALTY,
         UMAMI,
         BITTER,
-        SAVORY;
+        SAVORY
     }
 
     protected String name;
 
     protected int restaurantID;
 
+    protected double price;
+
+    protected String consumableType;
+
     protected boolean isFavorite = false;
+
     protected boolean hasDairy = false;
+
     protected boolean hasMeat = false;
     protected boolean isSpicy = false;
     protected boolean isHot = false;
+
     public String getName() {
         return name;
     }
@@ -79,21 +86,36 @@ public class Consumable {
         isHot = hot;
     }
 
-    public boolean isVegan(){
+    public boolean isVegan() {
         return (!hasMeat && !hasDairy);
     }
 
-    public String getTasteElementString(List<TasteElement> tasteElements){
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getConsumableType() {
+        return consumableType;
+    }
+
+    public void setConsumableType(String consumableType) {
+        this.consumableType = consumableType;
+    }
+
+    public String getTasteElementString(List<TasteElement> tasteElements) {
         StringBuilder sb = new StringBuilder();
-        for(TasteElement tasteElement : tasteElements)
-        {
+        for (TasteElement tasteElement : tasteElements) {
             sb.append(tasteElement.toString()).append(",");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 
-    public List<TasteElement> getTasteElementList(String tasteElementString){
+    public List<TasteElement> getTasteElementList(String tasteElementString) {
         String[] splitString = tasteElementString.split(",");
 
         List<TasteElement> list = new ArrayList<>();
@@ -102,6 +124,5 @@ public class Consumable {
         }
         return list;
     }
-
 
 }

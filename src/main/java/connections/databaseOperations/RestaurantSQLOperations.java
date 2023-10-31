@@ -22,7 +22,8 @@ public class RestaurantSQLOperations {
                 .addValue("restaurant_name", restaurant.getName())
                 .addValue("food_type", restaurant.getFoodStyle())
                 .addValue("location_id", restaurant.getLocationID())
-                .addValue("price_range", restaurant.getPriceRange());
+                .addValue("price_range", restaurant.getPriceRange())
+                .addValue("is_favorite", restaurant.isFavorite());
         queryParameter.update(sqlQuery, mapSqlParameterSource);
     }
 
@@ -36,6 +37,7 @@ public class RestaurantSQLOperations {
             restaurant.setFoodStyle(rs.getString("food_type"));
             restaurant.setPriceRange(rs.getString("price_range"));
             restaurant.setLocationID(rs.getInt("location_id"));
+            restaurant.setFavorite(rs.getInt("is_favorite"));
         });
         return restaurant;
     }

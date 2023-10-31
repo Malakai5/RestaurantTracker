@@ -41,7 +41,7 @@ async function searchButtonClicked(elementId){
     let object = {};
     data.forEach((value, key) => object[key] = value);
 
-    fetch('http://localhost:8080/filter/SearchForm', {
+    fetch('http://localhost:8080/filter/' + elementId ,{
         method: 'POST',
         headers: {
             'Accept': 'application/json',

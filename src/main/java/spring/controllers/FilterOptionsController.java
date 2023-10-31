@@ -2,6 +2,7 @@ package spring.controllers;
 
 import connections.databaseOperations.SQLWriter;
 import foodItems.Consumable;
+import foodItems.FoodItem;
 import objects.Restaurant;
 import objects.models.ConsumableSearchForm;
 import objects.models.RestaurantSearchForm;
@@ -24,12 +25,19 @@ public class FilterOptionsController {
         return SQLWriter.getCities(state);
     }
 
-    @PostMapping(value = "/SearchForm", consumes = "application/json", produces = "application/json")
-    public List<Restaurant> consumeRestaurantSearchForm(@RequestBody RestaurantSearchForm form){
+    @PostMapping(value = "/restaurantSearchForm", consumes = "application/json", produces = "application/json")
+    public List<Restaurant> consumeSearchForm(@RequestBody RestaurantSearchForm form){
         List<Integer> restaurantIds = SQLWriter.processSearchRequest(form);
         List<Restaurant> restaurants = new ArrayList<>();
         restaurantIds.forEach(id -> restaurants.add(SQLWriter.getRestaurant(id)));
         return restaurants;
+    }
+    @PostMapping(value = "/consumableSearchForm", consumes = "application/json", produces = "application/json")
+    public List<FoodItem> consumeSearchForm(@RequestBody ConsumableSearchForm form){
+        List<Integer> consumableIds = SQLWriter.processSearchRequest(form);
+        List<FoodItem> consumables = new ArrayList<>();
+        consumableIds.forEach(id -> consumables.add(SQLWriter.getConsumable(id)));
+        return consumables;
     }
 
 //    @PostMapping(value = "/consumableSearchForm", consumes = "application/json", produces = "application/json")

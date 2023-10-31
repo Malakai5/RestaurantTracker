@@ -56,7 +56,7 @@
                     Enter in your wanted details
 
                     <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm" style="display: none">
-                        <form id="resSearch">
+                        <form id="restaurantSearchForm">
                             <table>
                                 <tr>
                                     <th colspan="2">Let's find us a restaurant</th>
@@ -189,11 +189,11 @@
                                 </tr>
                             </table>
                         </form>
-                        <button id="searchButton" onclick = searchButtonClicked("resSearch")>Find me Sumthin</button>
+                        <button id="searchButton" onclick = searchButtonClicked("restaurantSearchForm")>Find me Sumthin</button>
                     </div>
 
                     <div class="w3-row w3-center w3-border w3-border-dark-grey" id="ConsumableForm" style="display: none">
-                        <form id="conSearch">
+                        <form id="consumableSearchForm">
                             <table>
                                 <tr>
                                     <th colspan="2">Oh you one of them picky ones</th>
@@ -222,7 +222,8 @@
                                     <td>Time of Meal</td>
                                     <!--- Time of Meal -->
                                     <td>
-                                        <select id="mealTime" name="consumableType">
+                                        <select id="mealTime" name="mealTime">
+                                            <option></option>
                                             <option value="Breakfast">Breakfast</option>
                                             <option value="Brunch">Brunch</option>
                                             <option value="Lunch">Lunch</option>
@@ -283,6 +284,7 @@
                                     <td>Main Taste Elements</td>
                                     <td><label>
                                         <select id="tasteElement" name="mainTasteElement">
+                                            <option></option>
                                             <option value="Savory">Savory</option>
                                             <option value="Sweet">Sweet</option>
                                             <option value="Bitter">Bitter</option>
@@ -307,6 +309,7 @@
 
                             </table>
                         </form>
+                        <button id="conSearchButton" onclick = searchButtonClicked("consumableSearchForm")>Find me Sumthin</button>
                     </div>
                 </div>
             </div>

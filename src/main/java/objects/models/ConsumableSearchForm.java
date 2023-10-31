@@ -8,7 +8,7 @@ public class ConsumableSearchForm implements SearchForm{
     public boolean hasHighCaffeine;
     public boolean hasMeat;
     public boolean hasDairy;
-    public String timeOfMeal;
+    public String timeOfMeal = "";
     public boolean favorite;
     public String mainTasteElement;
 

@@ -9,6 +9,12 @@ public class Dessert extends Consumable implements FoodItem {
 
     private List<String> mainIngredients = new ArrayList<>();
 
+    public TasteElement getTasteElements() {
+        return tasteElements;
+    }
+
+    private final TasteElement tasteElements = TasteElement.SWEET;
+
     public Dessert() {
         this.consumableType = "Dessert";
     }

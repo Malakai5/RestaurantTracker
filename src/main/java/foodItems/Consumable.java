@@ -54,7 +54,7 @@ public class Consumable {
         isFavorite = favorite;
     }
 
-    public boolean hasDairy() {
+    public boolean isHasDairy() {
         return hasDairy;
     }
 
@@ -62,7 +62,7 @@ public class Consumable {
         this.hasDairy = hasDairy;
     }
 
-    public boolean hasMeat() {
+    public boolean isHasMeat() {
         return hasMeat;
     }
 

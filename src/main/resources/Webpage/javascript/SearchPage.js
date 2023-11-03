@@ -35,13 +35,10 @@ async function getCities(){
 async function searchButtonClicked(elementId){
 
     let data = new FormData(document.getElementById(elementId));
-    // let value = Object.fromEntries(data.entries());
-    // let form = document.getElementById("resSearch");
-
     let object = {};
     data.forEach((value, key) => object[key] = value);
 
-    fetch('http://localhost:8080/filter/' + elementId ,{
+     fetch('http://localhost:8080/filter/' + elementId ,{
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -50,8 +47,16 @@ async function searchButtonClicked(elementId){
         body: JSON.stringify(object)
     })
         .then(response => response.json())
-        .then(response => console.log(response))
-    console.log(JSON.stringify(object));
+        .then(response =>{
+            if (elementId === "consumableSearchForm"){
+                populateConsumableSearchResults(response)
+            }
+            else{
+                populateRestaurantSearchResults(response)
+            }
+        })
+
+
 }
 function revealElement(elementId){
     let element = document.getElementById(elementId)
@@ -84,5 +89,37 @@ function checkConsumableType() {
     }
 
 
+}
+
+function populateConsumableSearchResults(jsonObject){
+    let resultsBox = document.getElementById("consumableSearchResults");
+    for (let i = 0; i < jsonObject.length;i++){
+        console.log((jsonObject[i]));
+        resultsBox.innerHTML += "<h1><b>" + jsonObject[i].name + "</b>" + "<span class=\"w3-right w3-tag w3-dark-grey w3-round\">" + jsonObject[i].price + "</span></h1>"
+        resultsBox.innerHTML += "<p class=\"w3-text-grey\">"
+            + jsonObject[i].consumableType + " | "
+            + jsonObject[i].tasteElements + " | "
+            + "</p>\n"
+        getLegendIcons(resultsBox, jsonObject[i])
+    }
+}
+
+function populateRestaurantSearchResults(jsonObject){
+    let resultsBox = document.getElementById("restaurantSearchResults");
+    for (let i = 0; i < jsonObject.length;i++){
+        console.log((jsonObject[i]));
+        resultsBox.innerHTML += "<h1><b>" + jsonObject[i].name + "</b>" + "<span class=\"w3-right w3-tag w3-dark-grey w3-round\">" + jsonObject[i].priceRange + "</span></h1>"
+    }
+}
+
+function getLegendIcons(element, jsonObject){
+    if (jsonObject.spicy === true)
+        element.innerHTML += "🌶";
+    if (jsonObject.hasMeat === false)
+        element.innerHTML += "🥦";
+    if (jsonObject.hasDairy === true)
+        element.innerHTML += "🍦";
+    if (jsonObject.favorite === true)
+        element.innerHTML += "🤤";
 }
 

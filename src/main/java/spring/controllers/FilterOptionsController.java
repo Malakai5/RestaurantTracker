@@ -2,6 +2,7 @@ package spring.controllers;
 
 import connections.databaseOperations.SQLWriter;
 import foodItems.Consumable;
+import foodItems.Entree;
 import foodItems.FoodItem;
 import objects.Restaurant;
 import objects.models.ConsumableSearchForm;
@@ -40,9 +41,22 @@ public class FilterOptionsController {
         return consumables;
     }
 
-//    @PostMapping(value = "/consumableSearchForm", consumes = "application/json", produces = "application/json")
-//    public List<Consumable> consumeConsumableSearchForm(@RequestBody ConsumableSearchForm form){
-//        List<Integer> consumableIDs = SQLWriter.processConsumableSearchForm(form);
-//        List<>
-//    }
+    @PostMapping(value = "/simpleTest", produces = "application/json")
+    public Entree simpleTest(){
+        List<Consumable.TasteElement> tasteElements = new ArrayList<>();
+        tasteElements.add(Consumable.TasteElement.SAVORY);
+        tasteElements.add(Consumable.TasteElement.UMAMI);
+        tasteElements.add(Consumable.TasteElement.SALTY);
+
+        Entree testEntree = new Entree("Lunch", 0,
+                "Tuna", "Sushi",tasteElements);
+        testEntree.setName("Rainbow Tuna Roll");
+        testEntree.setDairy(false);
+        testEntree.setMeat(true);
+        testEntree.setHot(false);
+        testEntree.setPrice(22.00);
+        testEntree.setFavorite(true);
+        testEntree.setRestaurantID(3);
+        return testEntree;
+    }
 }

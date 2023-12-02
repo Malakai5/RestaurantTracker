@@ -1,0 +1,26 @@
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg
+{
+    background-size: auto;
+    background-image: url("images/HungryLogo.png");
+    min-height: 90%;
+}
+.bigHeader{margin-bottom: 64px;}
+.restaurantOrConsumable{padding:128px 16px}
+.initiallyHidden{display: none}
+
+body, html {
+    height: 100%
+}
+
+input, select, textarea, label {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+td {
+    font-size: 20px;
+    font-family: "Georgia", sans-serif;
+}

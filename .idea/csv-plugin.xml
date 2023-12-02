@@ -136,6 +136,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\resources\searchPage.html">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\resources\updates.xml">
           <value>
             <Attribute>

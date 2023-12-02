@@ -8,26 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
     <link href="https://www.w3schools.com/lib/w3-colors-win8.css" rel="stylesheet">
     <link href="https://www.w3schools.com/lib/w3-colors-metro.css" rel="stylesheet">
-
-    <style>
-        body, html {
-            height: 100%
-        }
-
-        body, h1, h2, h3, h4, h5, h6 {
-            font-family: "Amatic SC", sans-serif
-        }
-
-        input, select, textarea {
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        td {
-            font-size: 20px;
-            font-family: "Georgia", sans-serif;
-        }
-    </style>
+    <link href="LocalStyleSheet.css" rel="stylesheet">
 </head>
 
 <body onpageshow="getFoodTypes()">
@@ -38,6 +19,7 @@
     <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
         <a class="w3-bar-item w3-button" href="index.html">HOME</a>
         <a class="w3-bar-item w3-button" href="searchPage.html">SEARCH</a>
+        <a class="w3-bar-item w3-button" href="entryPage.html">ADD NEW ENTRY</a>
         <a class="w3-bar-item w3-button" href="index.html#about">ABOUT</a>
         <a class="w3-bar-item w3-button" href="index.html#bio">MEET ME</a>
         <a class="w3-bar-item w3-button" href="index.html#contact">CONTACT</a>
@@ -48,8 +30,8 @@
 
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="search">
     <div class="w3-content">
-        <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">LET's GET TO SEARCHING</h1>
-        <div class="class=row w3-khaki" style="padding:128px 16px">
+        <h1 class="w3-center w3-jumbo bigHeader">LET's GET TO SEARCHING</h1>
+        <div class="class=row w3-khaki restaurantOrConsumable">
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
                 <a onclick=revealElement("RestaurantForm")>
                     <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
@@ -61,7 +43,7 @@
             <div class="w3-row w3-center w3-border w3-border-dark-grey" id="searchBox">
                 Enter in your wanted details
 
-                <div class="w3-row w3-center w3-border w3-border-dark-grey" id="RestaurantForm" style="display: none">
+                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="RestaurantForm">
                     <form id="restaurantSearchForm">
                         <table>
                             <tr>
@@ -181,7 +163,6 @@
                                     </select>
                                 </label></td>
                             </tr>
-
                             <tr>
                                 <td>Malakai's Fav?</td>
                                 <!--- Favorite Question -->
@@ -199,7 +180,7 @@
                     </button>
                 </div>
 
-                <div class="w3-row w3-center w3-border w3-border-dark-grey" id="ConsumableForm" style="display: none">
+                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="ConsumableForm">
                     <form id="consumableSearchForm">
                         <table>
                             <tr>
@@ -225,7 +206,7 @@
                                 </label></td>
                             </tr>
 
-                            <tr id="mealSelect" style="display: none">
+                            <tr id="mealSelect" class="initiallyHidden">
                                 <td>Time of Meal</td>
                                 <!--- Time of Meal -->
                                 <td>
@@ -239,7 +220,7 @@
                                 </td>
                             </tr>
 
-                            <tr id="alcoholSelect" style="display: none">
+                            <tr id="alcoholSelect" class="initiallyHidden">
                                 <td>Alcoholic?</td>
                                 <!--- Alcohol Question -->
                                 <td>
@@ -251,7 +232,7 @@
                                 </td>
                             </tr>
 
-                            <tr id="caffeineSelect" style="display: none">
+                            <tr id="caffeineSelect" class="initiallyHidden">
                                 <td>Caffeinated?</td>
                                 <!--- Caffeine Question -->
                                 <td>
@@ -339,11 +320,11 @@
             </a>
         </div>
 
-        <div class="w3-container w3-padding-32 w3-white" id="restaurantSearchResults" style="display: none">
+        <div class="w3-container w3-padding-32 w3-white initiallyHidden" id="restaurantSearchResults">
 
         </div>
 
-        <div class="w3-container w3-padding-32 w3-white" id="consumableSearchResults" style="display: none">
+        <div class="w3-container w3-padding-32 w3-white initiallyHidden" id="consumableSearchResults">
 
         </div>
 
@@ -351,5 +332,5 @@
     </div>
 </div>
 </body>
-<script src="javascript/SearchPage.js"></script>
+<script src="SearchPage.js"></script>
 </html>

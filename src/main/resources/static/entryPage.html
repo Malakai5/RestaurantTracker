@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href="https://www.w3schools.com/lib/w3-colors-win8.css" rel="stylesheet">
+    <link href="https://www.w3schools.com/lib/w3-colors-metro.css" rel="stylesheet">
+    <link href="https://www.w3schools.com/lib/w3-colors-2017.css" rel="stylesheet">
+    <link href="LocalStyleSheet.css" rel="stylesheet">
+    <title>Enter something new</title>
+
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+    <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
+        <a class="w3-bar-item w3-button" href="index.html">HOME</a>
+        <a class="w3-bar-item w3-button" href="searchPage.html">SEARCH</a>
+        <a class="w3-bar-item w3-button" href="entryPage.html">ADD NEW ENTRY</a>
+        <a class="w3-bar-item w3-button" href="index.html#about">ABOUT</a>
+        <a class="w3-bar-item w3-button" href="index.html#bio">MEET ME</a>
+        <a class="w3-bar-item w3-button" href="index.html#contact">CONTACT</a>
+    </div>
+</div>
+
+<div class="w3-container w3-2017-tawny-port w3-padding-64 w3-xxlarge" id="search">
+    <div class="w3-content">
+        <h1 class="w3-center w3-jumbo bigHeader w3-black">GIVE ME SOME GOOD STUFF</h1>
+        <div class="class=row w3-black restaurantOrConsumable">
+            <div class="w3-row w3-center w3-border w3-border-dark-grey">
+                <a onclick=revealElement("restaurantForm")>
+                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Add a new Restaurant</div>
+                </a>
+                <a onclick=revealElement("ConsumableForm")>
+                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Add a new Food Item</div>
+                </a>
+            </div>
+
+
+            <div class="w3-row w3-center w3-border w3-border-dark-grey">
+                Enter in your wanted details
+                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="restaurantForm">
+                    <form id="restaurantDetails" >
+                        <table>
+                            <tr>
+                                <th colspan="4">Gimme a gud spot </th>
+                            </tr>
+                            <tr>
+                                <td>Restaurant Name:</td>
+                                <td>
+                                    <label for="resName">
+                                    <input id="resName" name="name" type="text" required pattern="^[\\p{L}0-9]*$">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Type of Food: (ex. Breakfast, ethiopian)</td>
+                                <td>
+                                    <label for="foodType">
+                                    <input id="foodType" name="foodType" type="text" required pattern=^[\\p{L}0-9]*$">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Is it Bussin?(Favorite)</td>
+                                <td><label for="favorite">
+                                    <select id="favorite" name="favorite">
+                                        <option></option>
+                                        <option value="false">No</option>
+                                        <option value="true">Yes</option>
+                                    </select>
+                                </label></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input style="position: inherit" type="submit">
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="SearchPage.js"></script>
+</html>

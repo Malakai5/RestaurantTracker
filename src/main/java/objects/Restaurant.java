@@ -38,6 +38,7 @@ public class Restaurant {
     public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
     }
+
     public String getName() {
         return name;
     }
@@ -62,21 +63,10 @@ public class Restaurant {
     public void setLocation(Location location) {
         this.location = location;
     }
-    public int isFavorite() {
-        if (favorite) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
+    public boolean isFavorite() {
+        return favorite;
     }
-    public void setFavorite(int favorite) {
-        if (favorite == 0) {
-            this.favorite = false;
-        }
-        else {
-            this.favorite = true;
-        }
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
     }
-
 }

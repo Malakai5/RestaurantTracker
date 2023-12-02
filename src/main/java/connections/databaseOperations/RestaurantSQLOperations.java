@@ -37,7 +37,7 @@ public class RestaurantSQLOperations {
             restaurant.setFoodStyle(rs.getString("food_type"));
             restaurant.setPriceRange(rs.getString("price_range"));
             restaurant.setLocationID(rs.getInt("location_id"));
-            restaurant.setFavorite(rs.getInt("is_favorite"));
+            restaurant.setFavorite(rs.getBoolean("is_favorite"));
         });
         return restaurant;
     }

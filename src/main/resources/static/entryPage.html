@@ -34,65 +34,153 @@
                 <a onclick=revealElement("restaurantForm")>
                     <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Add a new Restaurant</div>
                 </a>
-                <a onclick=revealElement("ConsumableForm")>
+                <a onclick=revealElement("consumableForm")>
                     <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Add a new Food Item</div>
                 </a>
             </div>
 
-
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
                 Enter in your wanted details
                 <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="restaurantForm">
-                    <form id="restaurantDetails" >
-                        <table>
-                            <tr>
-                                <th colspan="4">Gimme a gud spot </th>
-                            </tr>
-                            <tr>
-                                <td>Restaurant Name:</td>
-                                <td>
-                                    <label for="resName">
-                                    <input id="resName" name="name" type="text" required pattern="^[\\p{L}0-9]*$">
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Type of Food: (ex. Breakfast, ethiopian)</td>
-                                <td>
-                                    <label for="foodType">
-                                    <input id="foodType" name="foodType" type="text" required pattern=^[\\p{L}0-9]*$">
-                                    </label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Is it Bussin?(Favorite)</td>
-                                <td><label for="favorite">
-                                    <select id="favorite" name="favorite">
-                                        <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
-                                    </select>
-                                </label></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <input style="position: inherit" type="submit">
-                                </td>
-                            </tr>
+                    <div id="restaurantDetails" class="w3-third" >
+                        <input type="text" placeholder="Restaurant Name" id="resName" pattern="^[\\p{L}0-9]*$"/>
+                        <input type="text" placeholder="Type of food" id="foodType" pattern="^[\\p{L}0-9]*$"/>
+                        <select id="favorite"  name="favorite" required>
+                            <option selected disabled>Is it Bussin?(Favorite)</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                        <select id="priceRange" name="priceRange">
+                            <option selected disabled>How much we tryna spend</option>
+                            <option value="$">Chump Change</option>
+                            <option value="$$">Lil bit of money</option>
+                            <option value="$$$">Big ballin</option>
+                            <option value="$$$$">THAT STEAK IS HOW MUCH 👀</option>
+                        </select>
+                        <img src="images/HungryLogo.png" style="width: 90%">
+                    </div>
 
-                        </table>
+                    <div class="card-container w3-third w3-container">
+                        <div class="panel">
+                            <div>
+                                <span class="sb-title">Address Selection</span>
+                            </div>
+                            <input type="text" placeholder="Address" id="location-input"/>
+                            <input type="text" placeholder="Apt, Suite, etc (optional)"/>
+                            <input type="text" placeholder="City" id="locality-input"/>
+                            <div class="half-input-container">
+                                <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
+                                <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
+                            </div>
+                            <input type="text" placeholder="Country" id="country-input"/>
+                        </div>
+                        <div class="map w3-third" id="gmp-map"></div>
+                    </div>
+                </div>
+                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="consumableForm">
+                    <div id="consumableDetails" class="w3-third w3-container" >
 
+                        <div class="panel">
+                            <input id="conName" name="name" placeholder="Consumable Name" type="text" required pattern="^[\\p{L}0-9]*$">
+                            <input id="conFoodType" name="foodType" type="text" placeholder="Type of Food" required pattern=^[\\p{L}0-9]*$">
+                            <input id="restaurantName" name="restaurantName" type="text" placeholder="Restaurant Name" required pattern=^[\\p{L}0-9]*$">
 
+                            <!---  Consumable Types -->
+                            <select id="consumableType" name="consumableType" onchange="checkConsumableType()">
+                                <option selected disabled>What we eatin?</option>
+                                <option value="Entree">Entree</option>
+                                <option value="Appetizer">Appetizer</option>
+                                <option value="Dessert">Dessert</option>
+                                <option value="Drink">Drink</option>
+                            </select>
 
-                    </form>
+                            <select id="conFavorite"  name="favorite" required>
+                                <option selected disabled>Is it Bussin?(Favorite)</option>
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                            </select>
+                        </div>
+                    </div>
 
+                    <div id="extraDetails" class="w3-container w3-third" >
+
+                        <select id="hasMeat" name="hasMeat">
+                            <option selected disabled>Is there any meat?</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+
+                        <select id="hasDairy" name="hasDairy">
+                            <option selected disabled>Is there any dairy?</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+
+                        <select id="tasteElement" name="mainTasteElement">
+                            <option selected disabled>How this bih taste?</option>
+                            <option value="Savory">Savory</option>
+                            <option value="Sweet">Sweet</option>
+                            <option value="Bitter">Bitter</option>
+                            <option value="Salty">Salty</option>
+                            <option value="Sour">Sour</option>
+                            <option value="Uma-mi">Uma-mi</option>
+                        </select>
+
+                        <select id="mealSelect" name="mealSelect" class="initiallyHidden">
+                            <option selected disabled>When we eatin?</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Brunch">Brunch</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                        </select>
+
+                        <!--- Alcohol Question -->
+                        <select id="alcoholSelect" name="isAlcoholic" class="initiallyHidden">
+                            <option selected disabled>Is the drink alcoholic?</option>
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+
+                        <select id="caffeineSelect" name="hasHighCaffeine" class="initiallyHidden">
+                            <option selected disabled>Is there lots of caffeine?</option>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div id="confirmation" class="w3-third">
+                        <div class="panel">
+                            <input type="text" placeholder="Address" id="location-read" readonly/>
+                            <input type="text" placeholder="Apt, Suite, etc (optional)" id="apt-read" readonly/>
+                            <input type="text" placeholder="City" id="locality-read" readonly/>
+                            <div class="half-input-container">
+                                <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-read" readonly/>
+                                <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-read" readonly/>
+                            </div>
+                            <div class="w3-bar w3-xlarge w3-light-gray" id="locationNav" style="padding: 5px; border: 1px solid black;">
+                                <button id="previousButton" class="w3-button w3-small w3-left">
+                                    <b class="arrow left"></b>
+                                    <b class="arrow left"></b>
+                                </button>
+                                <b class="w3-center-align" id="pageNumber"> 1 </b>
+                                <button id="NextButton" class="w3-button w3-small w3-right">
+                                    <b class="arrow right"></b>
+                                    <b class="arrow right"></b>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
 </body>
 <script src="SearchPage.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKbEUbGlCUCLiwrg2Ojku-l6CNTUdz7ws&libraries=places,marker&callback=initMap&solution_channel=GMP_QB_addressselection_v2_cAB" async defer></script>
+<script src="googleMaps.js"></script>
 </html>

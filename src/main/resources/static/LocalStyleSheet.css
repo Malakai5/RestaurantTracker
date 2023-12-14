@@ -17,10 +17,87 @@ body, html {
 
 input, select, textarea, label {
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
 }
 
 td {
     font-size: 20px;
     font-family: "Georgia", sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.sb-title {
+    position: relative;
+    top: -12px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+}
+
+.sb-title-icon {
+    position: relative;
+    top: -5px;
+}
+
+.card-container {
+    display: flex;
+    height: 500px;
+    width: 600px;
+}
+
+.panel {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.half-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.half-input {
+    max-width: 120px;
+}
+
+.map {
+    width: 300px;
+}
+
+.google-input {
+    height: 30px;
+}
+
+.google-input {
+    border: 0;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+}
+
+input:focus::placeholder {
+    color: white;
 }

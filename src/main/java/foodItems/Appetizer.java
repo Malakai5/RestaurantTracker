@@ -1,5 +1,8 @@
 package foodItems;
 
+import objects.models.ConsumableEntryForm;
+import objects.models.EntryForm;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -106,4 +109,22 @@ public class Appetizer extends Consumable implements FoodItem {
         }
 
     }
+
+    @Override
+    public FoodItem parseEntryForm(ConsumableEntryForm form) {
+        setHot(form.isHot);
+        setConsumableType(consumableType);
+        setDairy(hasDairy);
+        setFavorite(isFavorite);
+        setMeat(form.hasMeat);
+        setSpicy(form.isSpicy);
+        setName(form.consumableName);
+        setShareable(form.isShareable);
+        setMainIngredient(form.mainIngredient);
+        setMethodOfCooking(form.methodOfCooking);
+        setPrice(form.price);
+        setTasteElements(getTasteElementList(form.mainTasteElement));
+        return this;
+    }
+
 }

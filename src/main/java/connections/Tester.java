@@ -71,5 +71,8 @@ public class Tester {
         conForm.mainTasteElement = "";
         conForm.timeOfMeal = "Breakfast";
 
+
+        List<Restaurant> restaurants = SQLWriter.getRestaurantList("es");
+        restaurants.forEach(restaurant -> System.out.println(restaurant.toString()));
     }
 }

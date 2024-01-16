@@ -15,7 +15,7 @@
 
 
 <!-- Navbar (sit on top) -->
-<div class="w3-top w3-hide-small">
+<div class="w3-top w3-small">
     <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
         <a class="w3-bar-item w3-button" href="index.html">HOME</a>
         <a class="w3-bar-item w3-button" href="searchPage.html">SEARCH</a>
@@ -206,6 +206,17 @@
                                 </label></td>
                             </tr>
 
+                            <tr>
+                                <td>Is it hot</td>
+                                <td>
+                                    <select id="isHot" name="isHot">
+                                        <option></option>
+                                        <option value="False">No</option>
+                                        <option value="True">Yes</option>
+                                    </select>
+                                </td>
+                            </tr>
+
                             <tr id="mealSelect" class="initiallyHidden">
                                 <td>Time of Meal</td>
                                 <!--- Time of Meal -->
@@ -309,7 +320,7 @@
     <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="searchResults">
         <div class="w2-col s12 w3-padding-large">Legend
             <br>
-            <p>Spicy=🌶 vegetarian=🥦 dairy=🍦 Malakai's Favorite=🤤</p>
+            <p>Hot=hot(icon) Spicy=🌶 vegetarian=🥦 dairy=🍦 Malakai's Favorite=🤤</p>
         </div>
         <div class="w3-row w3-center w3-border w3-border-dark-grey">
             <a href="#restaurantSearchResults" onclick=revealElement("restaurantSearchResults")>

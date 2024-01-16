@@ -15,12 +15,13 @@ public class ConsumableSQLOperations {
         this.queryParameter = queryParameter;
     }
 
-    public void addNewConsumable(FoodItem consumable){ //TODO figure out why this isn't working
+    public int addNewConsumable(FoodItem consumable){
         String sqlQuery = (String) BeanSearcher.getInstance().lookUp("add.consumable");
         sqlQuery = sqlQuery.replace(":columns", consumable.buildSQLColumnsString());
         sqlQuery = sqlQuery.replace(":values", consumable.buildSQLValueString());
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         queryParameter.update(sqlQuery, mapSqlParameterSource);
+        return 0;
     }
 
     public FoodItem getConsumable(int consumableID){

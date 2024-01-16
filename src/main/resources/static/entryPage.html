@@ -12,10 +12,10 @@
     <title>Enter something new</title>
 
 </head>
-<body>
+<body class="w3-2017-tawny-port">
 
 <!-- Navbar (sit on top) -->
-<div class="w3-top w3-hide-small">
+<div class="w3-top w3-small">
     <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
         <a class="w3-bar-item w3-button" href="index.html">HOME</a>
         <a class="w3-bar-item w3-button" href="searchPage.html">SEARCH</a>
@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<div class="w3-container w3-2017-tawny-port w3-padding-64 w3-xxlarge" id="search">
+<div class="w3-container w3-2017-tawny-port w3-xxlarge" id="search">
     <div class="w3-content">
         <h1 class="w3-center w3-jumbo bigHeader w3-black">GIVE ME SOME GOOD STUFF</h1>
         <div class="class=row w3-black restaurantOrConsumable">
@@ -42,15 +42,16 @@
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
                 Enter in your wanted details
                 <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="restaurantForm">
-                    <div id="restaurantDetails" class="w3-third" >
-                        <input type="text" placeholder="Restaurant Name" id="resName" pattern="^[\\p{L}0-9]*$"/>
-                        <input type="text" placeholder="Type of food" id="foodType" pattern="^[\\p{L}0-9]*$"/>
+                    <form id="restaurantEntry">
+                    <div class="w3-third w3-white" id="restaurantDetails">
+                        <input type="text" placeholder="Restaurant Name" id="resName" name="restaurantName" required pattern="^[a-zA-Z0-9_ ]*$"/>
+                        <input type="text" placeholder="Type of food" id="foodType" name="foodType" required pattern="^[a-zA-Z0-9_ ]*$"/>
                         <select id="favorite"  name="favorite" required>
                             <option selected disabled>Is it Bussin?(Favorite)</option>
                             <option value="false">No</option>
                             <option value="true">Yes</option>
                         </select>
-                        <select id="priceRange" name="priceRange">
+                        <select id="priceRange" name="priceRange" required>
                             <option selected disabled>How much we tryna spend</option>
                             <option value="$">Chump Change</option>
                             <option value="$$">Lil bit of money</option>
@@ -60,30 +61,36 @@
                         <img src="images/HungryLogo.png" style="width: 90%">
                     </div>
 
-                    <div class="card-container w3-third w3-container">
-                        <div class="panel">
+                    <div class="card-container w3-rest w3-container">
+                        <div class="panel w3-container w3-half w3-white">
                             <div>
                                 <span class="sb-title">Address Selection</span>
                             </div>
-                            <input type="text" placeholder="Address" id="location-input"/>
-                            <input type="text" placeholder="Apt, Suite, etc (optional)"/>
-                            <input type="text" placeholder="City" id="locality-input"/>
+                            <input type="text" placeholder="Address" id="location-input" name="address" required/>
+                            <input type="text" placeholder="Apt, Suite, etc (optional)" name="unitNumber"/>
+                            <input type="text" placeholder="City" id="locality-input" name="city" required/>
                             <div class="half-input-container">
-                                <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
-                                <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
+                                <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input" name="state" required/>
+                                <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input" name="zipcode" required/>
                             </div>
                             <input type="text" placeholder="Country" id="country-input"/>
                         </div>
-                        <div class="map w3-third" id="gmp-map"></div>
+                        <div class="map w3-container w3-half w3-hide-small" id="gmp-map"></div>
                     </div>
+                        <input type="submit" value="Submit" onclick=newEntry("restaurantEntry")>
+                    </form>
                 </div>
                 <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="consumableForm">
+                    <form id="consumableEntry">
                     <div id="consumableDetails" class="w3-third w3-container" >
 
                         <div class="panel">
-                            <input id="conName" name="name" placeholder="Consumable Name" type="text" required pattern="^[\\p{L}0-9]*$">
-                            <input id="conFoodType" name="foodType" type="text" placeholder="Type of Food" required pattern=^[\\p{L}0-9]*$">
-                            <input id="restaurantName" name="restaurantName" type="text" placeholder="Restaurant Name" required pattern=^[\\p{L}0-9]*$">
+                            <input id="conName" name="consumableName" placeholder="Consumable Name" type="text" required>
+                            <input id="conFoodType" name="foodType" type="text" placeholder="Type of Food" required>
+                            <input id="restaurantName" name="restaurantName" type="text" placeholder="Restaurant Name" list="restaurantOptions" required>
+                                <datalist id="restaurantOptions">
+                                </datalist>
+                            </input>
 
                             <!---  Consumable Types -->
                             <select id="consumableType" name="consumableType" onchange="checkConsumableType()">
@@ -134,7 +141,6 @@
                             <option value="Dinner">Dinner</option>
                         </select>
 
-                        <!--- Alcohol Question -->
                         <select id="alcoholSelect" name="isAlcoholic" class="initiallyHidden">
                             <option selected disabled>Is the drink alcoholic?</option>
                             <option value="false">No</option>
@@ -148,7 +154,7 @@
                         </select>
                     </div>
 
-                    <div id="confirmation" class="w3-third">
+                    <div id="restaurantConfirmation" class="w3-third">
                         <div class="panel">
                             <input type="text" placeholder="Address" id="location-read" readonly/>
                             <input type="text" placeholder="Apt, Suite, etc (optional)" id="apt-read" readonly/>
@@ -172,6 +178,8 @@
                         </div>
 
                     </div>
+                        <input type="submit" value="Submit" onclick=newEntry("consumableEntry")>
+                    </form>
                 </div>
             </div>
 
@@ -183,4 +191,5 @@
 <script src="SearchPage.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKbEUbGlCUCLiwrg2Ojku-l6CNTUdz7ws&libraries=places,marker&callback=initMap&solution_channel=GMP_QB_addressselection_v2_cAB" async defer></script>
 <script src="googleMaps.js"></script>
+<script src="EntryPage.js"></script>
 </html>

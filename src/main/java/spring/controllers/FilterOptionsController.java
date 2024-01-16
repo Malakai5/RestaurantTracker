@@ -40,23 +40,4 @@ public class FilterOptionsController {
         consumableIds.forEach(id -> consumables.add(SQLWriter.getConsumable(id)));
         return consumables;
     }
-
-    @PostMapping(value = "/simpleTest", produces = "application/json")
-    public Entree simpleTest(){
-        List<Consumable.TasteElement> tasteElements = new ArrayList<>();
-        tasteElements.add(Consumable.TasteElement.SAVORY);
-        tasteElements.add(Consumable.TasteElement.UMAMI);
-        tasteElements.add(Consumable.TasteElement.SALTY);
-
-        Entree testEntree = new Entree("Lunch", 0,
-                "Tuna", "Sushi",tasteElements);
-        testEntree.setName("Rainbow Tuna Roll");
-        testEntree.setDairy(false);
-        testEntree.setMeat(true);
-        testEntree.setHot(false);
-        testEntree.setPrice(22.00);
-        testEntree.setFavorite(true);
-        testEntree.setRestaurantID(3);
-        return testEntree;
-    }
 }

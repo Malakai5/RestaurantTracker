@@ -1,7 +1,5 @@
 package connections.databaseOperations;
 
-import objects.models.ConsumableSearchForm;
-import objects.models.RestaurantSearchForm;
 import objects.models.SearchForm;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -53,5 +51,14 @@ public class DatabaseSearchOperations {
             idList.add(rs.getInt(form.getSearchFormType() + "_id"));
         });
         return idList;
+    }
+
+    public int getHighestID(String wantedTable){
+        String sqlQuery = (String) BeanSearcher.getInstance().lookUp("get.highest.id");
+        sqlQuery = sqlQuery.replace("wantedTable", wantedTable);
+        int highestId = 0;
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        highestId = queryParameter.queryForObject(sqlQuery, mapSqlParameterSource, Integer.class);
+        return highestId;
     }
 }

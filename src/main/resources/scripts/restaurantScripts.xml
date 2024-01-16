@@ -17,5 +17,9 @@
         <constructor-arg value="SELECT * FROM restaurant_table WHERE restaurant_id = :id"/>
     </bean>
 
+    <bean id="get.restaurant.list" class="java.lang.String">
+        <constructor-arg value="SELECT * FROM restaurant_table WHERE restaurant_name LIKE '%temp%'"/>
+    </bean>
+
 
 </beans>

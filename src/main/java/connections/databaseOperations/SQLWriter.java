@@ -20,23 +20,29 @@ public class SQLWriter {
     public static ConsumableSQLOperations consumableSQLOperations = new ConsumableSQLOperations(queryParameter);
     public static DatabaseSearchOperations databaseSearchOperations = new DatabaseSearchOperations(queryParameter);
 
-    public static void addNewLocation(Location location){
-         locationSQLOperations.addNewLocation(location);
+    public static int addNewLocation(Location location){
+        locationSQLOperations.addNewLocation(location);
+        return databaseSearchOperations.getHighestID("location");
     }
     public static Location getLocation(int locationID){
         return locationSQLOperations.getLocation(locationID);
     }
 
-    public static void addNewRestaurant(Restaurant restaurant){
+    public static int addNewRestaurant(Restaurant restaurant){
         restaurantSQLOperations.addNewRestaurant(restaurant);
+        return databaseSearchOperations.getHighestID("restaurant");
     }
     public static Restaurant getRestaurant(int restaurantID){
         Restaurant restaurant = restaurantSQLOperations.getRestaurant(restaurantID);
         restaurant.setLocation(getLocation(restaurant.getLocationID()));
         return restaurant;
     }
-    public static void addNewConsumable(FoodItem consumable){
+    public static List<Restaurant> getRestaurantList(String restaurantName){
+        return restaurantSQLOperations.getRestaurantList(restaurantName);
+    }
+    public static int addNewConsumable(FoodItem consumable){
         consumableSQLOperations.addNewConsumable(consumable);
+        return databaseSearchOperations.getHighestID("consumable");
     }
     public static FoodItem getConsumable(int consumableID){
        return consumableSQLOperations.getConsumable(consumableID);

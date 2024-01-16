@@ -14,7 +14,6 @@ async function getFoodTypes() {
     {
         console.error(error);
     }
-
 }
 async function getCities(){
     try{
@@ -125,6 +124,8 @@ function populateRestaurantSearchResults(jsonObject){
 }
 
 function getLegendIcons(element, jsonObject){
+    if (jsonObject.isHot === true)
+        element.innerHTML += "hot(icon)";
     if (jsonObject.spicy === true)
         element.innerHTML += "🌶";
     if (jsonObject.hasMeat === false)

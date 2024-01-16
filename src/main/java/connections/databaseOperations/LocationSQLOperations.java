@@ -12,7 +12,7 @@ public class LocationSQLOperations {
         this.queryParameter = namedParameterJdbcTemplate;
     }
 
-    public void addNewLocation(Location location)
+    public int addNewLocation(Location location)
     {
         String sqlQuery = (String) BeanSearcher.getInstance().lookUp("add.location");
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource()
@@ -23,6 +23,7 @@ public class LocationSQLOperations {
                 .addValue("address_number", location.getAddressNumber())
                 .addValue("unit_number", location.getUnitNumber());
         queryParameter.update(sqlQuery, mapSqlParameterSource);
+        return 0;
     }
 
     public Location getLocation(int locationID)

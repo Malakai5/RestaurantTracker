@@ -50,8 +50,6 @@ body {
 
 .panel {
     background: white;
-    width: 300px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

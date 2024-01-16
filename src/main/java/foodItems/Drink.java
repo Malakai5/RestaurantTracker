@@ -1,5 +1,7 @@
 package foodItems;
 
+import objects.models.ConsumableEntryForm;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -89,5 +91,21 @@ public class Drink extends Consumable implements FoodItem {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public FoodItem parseEntryForm(ConsumableEntryForm form) {
+        setHot(form.isHot);
+        setConsumableType(consumableType);
+        setDairy(hasDairy);
+        setFavorite(isFavorite);
+        setMeat(form.hasMeat);
+        setSpicy(form.isSpicy);
+        setName(form.consumableName);
+        setAlcoholic(form.isAlcoholic);
+        setHighCaffeine(form.hasHighCaffeine);
+        setPrice(form.price);
+        setTasteElements(getTasteElementList(form.mainTasteElement));
+        return this;
     }
 }

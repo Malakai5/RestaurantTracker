@@ -9,12 +9,12 @@
     <context:annotation-config/>
 
     <bean id="add.location" class="java.lang.String">
-        <constructor-arg value="INSERT INTO locations_table(state, city, zipcode, street_name, address_number, unit_number)
+        <constructor-arg value="INSERT INTO location_table(state, city, zipcode, street_name, address_number, unit_number)
          VALUES (:state, :city, :zipcode, :street_name, :address_number, :unit_number);"/>
     </bean>
 
     <bean id="select.location" class="java.lang.String">
-        <constructor-arg value="SELECT * FROM locations_table WHERE location_id = :id"/>
+        <constructor-arg value="SELECT * FROM location_table WHERE location_id = :id"/>
     </bean>
 
 

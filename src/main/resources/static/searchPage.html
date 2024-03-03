@@ -9,6 +9,7 @@
     <link href="https://www.w3schools.com/lib/w3-colors-win8.css" rel="stylesheet">
     <link href="https://www.w3schools.com/lib/w3-colors-metro.css" rel="stylesheet">
     <link href="LocalStyleSheet.css" rel="stylesheet">
+    <link href="PopUp.css" rel="stylesheet">
 </head>
 
 <body onpageshow="getFoodTypes()">
@@ -30,13 +31,13 @@
 
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="search">
     <div class="w3-content">
-        <h1 class="w3-center w3-jumbo bigHeader">LET's GET TO SEARCHING</h1>
+        <h1 class="w3-center w3-jumbo bigHeader">LET'S GET TO SEARCHING</h1>
         <div class="class=row w3-khaki restaurantOrConsumable">
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                <a onclick=revealElement("RestaurantForm")>
+                <a onclick=showAndHide("RestaurantForm","ConsumableForm")>
                     <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
                 </a>
-                <a onclick=revealElement("ConsumableForm")>
+                <a onclick=showAndHide("ConsumableForm","RestaurantForm")>
                     <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Consumables</div>
                 </a>
             </div>
@@ -52,7 +53,7 @@
                             <tr>
                                 <td>Restaurant's Name</td>
                                 <td><label>
-                                    <input name="restaurantName" type="text">
+                                    <input name="restaurant_name" type="text">
                                 </label></td>
                             </tr>
                             <tr>
@@ -144,7 +145,7 @@
                                 </td>
                                 <td><label>
                                     <!---  Food Types -->
-                                    <select id="foodType" name="foodType">
+                                    <select id="foodType" name="food_type">
                                         <option></option>
                                     </select>
                                 </label></td>
@@ -154,7 +155,7 @@
                                 </td>
                                 <td><label>
                                     <!---  price Range -->
-                                    <select id="priceRange" name="priceRange">
+                                    <select id="priceRange" name="price_range">
                                         <option></option>
                                         <option value="$">Chump Change</option>
                                         <option value="$$">Lil bit of money</option>
@@ -167,10 +168,10 @@
                                 <td>Malakai's Fav?</td>
                                 <!--- Favorite Question -->
                                 <td>
-                                    <select id="favoriteRestaurant" name="favorite">
+                                    <select id="favoriteRestaurant" name="is_favorite">
                                         <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -189,14 +190,14 @@
                             <tr>
                                 <td>Consumable's Name</td>
                                 <td><label>
-                                    <input name="consumableName" type="text">
+                                    <input name="consumable_name" type="text">
                                 </label></td>
                             </tr>
                             <tr>
                                 <td>Consumable Type</td>
                                 <td><label>
                                     <!---  Consumable Types -->
-                                    <select id="consumableType" name="consumableType" onchange="checkConsumableType()">
+                                    <select id="consumableType" name="consumable_type" onchange="checkConsumableType()">
                                         <option value=""></option>
                                         <option value="Entree">Entree</option>
                                         <option value="Appetizer">Appetizer</option>
@@ -209,10 +210,10 @@
                             <tr>
                                 <td>Is it hot</td>
                                 <td>
-                                    <select id="isHot" name="isHot">
+                                    <select id="isHot" name="is_hot">
                                         <option></option>
-                                        <option value="False">No</option>
-                                        <option value="True">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -221,7 +222,7 @@
                                 <td>Time of Meal</td>
                                 <!--- Time of Meal -->
                                 <td>
-                                    <select id="mealTime" name="mealTime">
+                                    <select id="mealTime" name="meal_time">
                                         <option></option>
                                         <option value="Breakfast">Breakfast</option>
                                         <option value="Brunch">Brunch</option>
@@ -235,10 +236,10 @@
                                 <td>Alcoholic?</td>
                                 <!--- Alcohol Question -->
                                 <td>
-                                    <select id="alcohol" name="isAlcoholic">
+                                    <select id="alcohol" name="is_alcoholic">
                                         <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -247,7 +248,7 @@
                                 <td>Caffeinated?</td>
                                 <!--- Caffeine Question -->
                                 <td>
-                                    <select id="caffeine" name="hasHighCaffeine">
+                                    <select id="caffeine" name="high_caffeine">
                                         <option></option>
                                         <option value="No">No</option>
                                         <option value="Yes">Yes</option>
@@ -259,10 +260,10 @@
                                 <td>Has Meat?</td>
                                 <!--- Meat Question -->
                                 <td>
-                                    <select id="hasMeat" name="hasMeat">
+                                    <select id="hasMeat" name="has_meat">
                                         <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -271,10 +272,10 @@
                                 <td>Has Dairy?</td>
                                 <!--- Dairy Question -->
                                 <td>
-                                    <select id="hasDairy" name="hasDairy">
+                                    <select id="hasDairy" name="has_dairy">
                                         <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -282,7 +283,7 @@
                             <tr>
                                 <td>Main Taste Elements</td>
                                 <td><label>
-                                    <select id="tasteElement" name="mainTasteElement">
+                                    <select id="tasteElement" name="taste_elements">
                                         <option></option>
                                         <option value="Savory">Savory</option>
                                         <option value="Sweet">Sweet</option>
@@ -298,10 +299,10 @@
                                 <td>Malakai's Fav?</td>
                                 <!--- Favorite Question -->
                                 <td>
-                                    <select id="favoriteConsumable" name="favorite">
+                                    <select id="favoriteConsumable" name="is_favorite">
                                         <option></option>
-                                        <option value="false">No</option>
-                                        <option value="true">Yes</option>
+                                        <option value=False>No</option>
+                                        <option value=True>Yes</option>
                                     </select>
                                 </td>
                             </tr>
@@ -323,10 +324,10 @@
             <p>Hot=hot(icon) Spicy=🌶 vegetarian=🥦 dairy=🍦 Malakai's Favorite=🤤</p>
         </div>
         <div class="w3-row w3-center w3-border w3-border-dark-grey">
-            <a href="#restaurantSearchResults" onclick=revealElement("restaurantSearchResults")>
+            <a href="#restaurantSearchResults" onclick=showAndHide("restaurantSearchResults","consumableSearchResults")>
                 <div class="w3-col s6 tablink w3-padding-large w3-hover-red">Restaurants</div>
             </a>
-            <a href="#consumableSearchResults" onclick=revealElement("consumableSearchResults")>
+            <a href="#consumableSearchResults" onclick=showAndHide("consumableSearchResults","restaurantSearchResults")>
                 <div class="w3-col s6 tablink w3-padding-large w3-hover-red">Food Items</div>
             </a>
         </div>
@@ -338,10 +339,31 @@
         <div class="w3-container w3-padding-32 w3-white initiallyHidden" id="consumableSearchResults">
 
         </div>
-
-
     </div>
 </div>
+
+
+<div id="popup-box" class="modal">
+    <div class="content">
+                <div class="panel popup-card-container w3-container w3-white">
+                    <input style="font-size: x-large" type="text" placeholder="Address" id="location-input" name="address" readonly/>
+                    <input style="font-size: x-large" type="text" placeholder="Apt, Suite, etc (optional)" id="unit_number" name="unit_number" readonly/>
+                    <input style="font-size: x-large" type="text" placeholder="City" id="locality-input" name="city" readonly/>
+                    <div class="half-input-container">
+                        <input style="font-size: x-large" type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input" name="state" readonly/>
+                        <input style="font-size: x-large" type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input" name="zipcode" readonly/>
+                    </div>
+                    <input style="font-size: x-large" type="text" placeholder="Country" id="country-input"/>
+                </div>
+        <div class="w3-row">
+            <input type="button" class="w3-center" onclick="closePopup()" value="CLOSE">
+
+        </div>
+    </div>
+</div>
+
+
 </body>
 <script src="SearchPage.js"></script>
+<script src="util.js"></script>
 </html>

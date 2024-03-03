@@ -1,0 +1,83 @@
+body, html {height: 100%}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+.menu {display: none}
+.bgimg
+{
+    background-size: auto;
+    background-image: url("images/HungryLogo.png");
+    min-height: 90%;
+}
+.bigHeader{margin-bottom: 5%;}
+.restaurantOrConsumable{padding:20% 5%}
+.initiallyHidden{display: none}
+
+body, html {
+    height: 100%
+}
+
+input, select, textarea, label {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+td {
+    font-size: large;
+    font-family: "Georgia", sans-serif;
+}
+
+.sb-title {
+    position: relative;
+    top: -12px;
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+}
+
+.sb-title-icon {
+    position: relative;
+    top: -5px;
+}
+
+.card-container {
+    display: flex;
+    height: 100%;
+}
+
+.panel {
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.half-input-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.half-input {
+    max-width: 50%;
+}
+
+.map {
+    width: 50%;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+}
+
+input:focus::placeholder {
+    color: white;
+}

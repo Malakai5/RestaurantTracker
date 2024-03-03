@@ -9,9 +9,9 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class Driver {
     private static BasicDataSource dataSource;
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "Rest";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/restaurants";
+    private static final String USERNAME = "*****";
+    private static final String PASSWORD = "********";
+    private static final String DB_URL = "jdbc:mysql:*********";
 
     public static synchronized DataSource getDataSource() {
         if (dataSource == null) {

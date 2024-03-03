@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tester {
+
     public static void main(String[] args) {
         Location testLocation = new Location
-                ("FL","Tampa",33617,"Florida",1234, 23);
-        Restaurant testRestaurant = new Restaurant("FoxTail", testLocation, "Bakery", "$", 3);
+                ("FL","Tampa",33610,"Nebraska",0123, 0);
+        Restaurant testRestaurant = new Restaurant("Nebraska MiniMart", testLocation, "Caribbean", "$", 1);
 
         List<Consumable.TasteElement> tasteElements = new ArrayList<>();
         tasteElements.add(Consumable.TasteElement.SAVORY);
@@ -25,7 +26,7 @@ public class Tester {
         testDrink.setTasteElements(tasteElements);
         testDrink.setDairy(false);
         testDrink.setPrice(21.00);
-        testDrink.setRestaurantID(3);
+        testDrink.setRestaurantID(1);
 
         List<String> mainIngredients = new ArrayList<>();
         mainIngredients.add("Vanilla Ice Cream");
@@ -36,7 +37,7 @@ public class Tester {
         testDessert.setHot(false);
         testDessert.setFavorite(false);
         testDessert.setName("Ice Cream Sunday");
-        testDessert.setRestaurantID(2);
+        testDessert.setRestaurantID(1);
         testDessert.setPrice(14.50);
 
         Appetizer testAppetizer = new Appetizer("Cheese", "Baked", true, tasteElements);
@@ -46,17 +47,17 @@ public class Tester {
         testAppetizer.setSpicy(false);
         testAppetizer.setMeat(true);
         testAppetizer.setDairy(true);
-        testAppetizer.setRestaurantID(2);
+        testAppetizer.setRestaurantID(1);
 
-        Entree testEntree = new Entree("Lunch", 0,
-                "Tuna", "Sushi",tasteElements);
-        testEntree.setName("Rainbow Tuna Roll");
-        testEntree.setDairy(false);
+        Entree testEntree = new Entree("Dinner", 2,
+                "Wagyu Beef", "Grill",tasteElements);
+        testEntree.setName("Big ol BURGER");
+        testEntree.setDairy(true);
         testEntree.setMeat(true);
         testEntree.setHot(false);
-        testEntree.setPrice(22.00);
+        testEntree.setPrice(29.00);
         testEntree.setFavorite(true);
-        testEntree.setRestaurantID(3);
+        testEntree.setRestaurantID(1);
 
         RestaurantSearchForm form = new RestaurantSearchForm();
         form.restaurantName = "Bob Evans";
@@ -71,8 +72,8 @@ public class Tester {
         conForm.mainTasteElement = "";
         conForm.timeOfMeal = "Breakfast";
 
-
-        List<Restaurant> restaurants = SQLWriter.getRestaurantList("es");
-        restaurants.forEach(restaurant -> System.out.println(restaurant.toString()));
+//        SQLWriter.addNewLocation(testLocation);
+//        SQLWriter.addNewRestaurant(testRestaurant);
+        SQLWriter.addNewConsumable(testEntree);
     }
 }

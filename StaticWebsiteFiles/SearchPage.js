@@ -16,10 +16,9 @@ async function getFoodTypes() {
 
     fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
         .then(response => response.text())
-        .then(response => response.replaceAll("\"",""))
-        .then(response => response.substring(1, response.length - 1))
-        .then(response => response.split(","))
-        .then(response => response.forEach( foodType => foodDropDownList.add(new Option(foodType))))
+        .then(text => JSON.parse(text))
+        .then(json => json.body)
+        .then(body => body.forEach( foodType => foodDropDownList.add(new Option(foodType))))
         .catch(error => alert('error'));
 
 }
@@ -39,10 +38,9 @@ async function getCities(){
         };
         fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
             .then(response => response.text())
-            .then(response => response.replaceAll("\"",""))
-            .then(response => response.substring(1, response.length - 1))
-            .then(response => response.split(","))
-            .then(response => response.forEach( foodType => city.add(new Option(foodType))))
+            .then(text => JSON.parse(text))
+            .then(json => json.body)
+            .then(json => json.forEach( foodType => city.add(new Option(foodType))))
             .catch(error => alert('error'));
     }
     catch (error)
@@ -50,6 +48,29 @@ async function getCities(){
         console.error(error);
     }
 }
+
+async function getMenu(restaurantID){
+    try {
+        let raw = JSON.stringify({
+            "object_type": "menu",
+            "key": restaurantID
+        });
+        let requestOptions = {
+            method: 'POST',
+            body: raw,
+            redirect: 'follow'
+        };
+        fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
+            .then(response => response.text())
+            .then(text => JSON.parse(text))
+            .then(json => json.body)
+            .then(body => populateConsumableSearchResults(body))}
+    catch (error)
+    {
+        console.error(error);
+    }
+}
+
 async function searchButtonClicked(elementId){
 
     let data = new FormData(document.getElementById(elementId));
@@ -78,24 +99,26 @@ async function searchButtonClicked(elementId){
      fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/search", requestOptions)
          .then(response => response.text())
          .then(text => JSON.parse(text))
-         .then(json =>{
+         .then(json => json.body)
+         .then(body =>{
              if (elementId === "consumableSearchForm"){
-                 populateConsumableSearchResults(json)
+                 populateConsumableSearchResults(body)
              }
              else{
-                 populateRestaurantSearchResults(json)
+                 populateRestaurantSearchResults(body)
              }
          })
-
-
 }
+
 function populateConsumableSearchResults(jsonObject) {
     let resultsBox = document.getElementById("consumableSearchResults");
     resultsBox.innerHTML = "";
     for (let i = 0; i < jsonObject.length;i++) {
         let currentObject = jsonObject[i]
-        let consumable = JSON.parse(currentObject.consumable)
-        let restaurant = JSON.parse(currentObject.restaurant)
+        let consumable = currentObject.consumable
+        console.log(consumable)
+        let restaurant = currentObject.restaurant
+        console.log(restaurant)
 
         resultsBox.innerHTML += "<h1><b>" + consumable.consumable_name + "</b>" + "<span class=\"w3-right w3-tag w3-dark-grey w3-round\">" + consumable.price + "</span></h1>"
         resultsBox.innerHTML += "<p class=\"w3-text-grey\">"
@@ -124,8 +147,9 @@ function populatePopupMap(locationID){
     fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
-        .then(json => {
-            let location = JSON.parse(json)
+        .then(json => json.body)
+        .then(body => {
+            let location = JSON.parse(body)
             console.log(location)
             document.getElementById("location-input").value = location.address_number + " " + location.street_name
             document.getElementById("unit_number").value = location.unit_number
@@ -140,11 +164,18 @@ function populateRestaurantSearchResults(jsonObject){
     let resultsBox = document.getElementById("restaurantSearchResults");
     resultsBox.innerHTML = "";
 
+    console.log(jsonObject)
+
     for (let i = 0; i < jsonObject.length;i++){
         let currentJsonObject = jsonObject[i]
         let currentRestaurant = JSON.parse(currentJsonObject.restaurant)
         let currentLocation = JSON.parse(currentJsonObject.location)
-        resultsBox.innerHTML += "<h1><b>" + currentRestaurant.restaurant_name + "</b>" + "<span class=\"w3-right w3-tag w3-dark-grey w3-round\">" + currentRestaurant.price_range + "</span></h1>"
+        resultsBox.innerHTML += "<h1><b>" + currentRestaurant.restaurant_name + "</b> - "
+            + "<a id='menu' href=#consumableSearchResults" +
+            " onclick='showAndHide(\"consumableSearchResults\",\"restaurantSearchResults\");getMenu(" + currentRestaurant.location_id + ")'" +
+            " \>menu</a>"
+            + "<span class=\"w3-right w3-tag w3-dark-grey w3-round\">" +
+            currentRestaurant.price_range + "</span></h1>"
         resultsBox.innerHTML += "<p class=\"w3-text-grey\">"
             + currentRestaurant.food_type + " | "
             + currentLocation.address_number + " " + currentLocation.street_name + ", "

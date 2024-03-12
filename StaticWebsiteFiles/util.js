@@ -1,3 +1,8 @@
+// let resSubmitButton = document.getElementById("restaurantSubmitButton")
+// resSubmitButton.disabled = true
+// let conSubmitButton = document.getElementById("consumableSubmitButton")
+// conSubmitButton.disabled = true
+
 function revealElement(elementId){
     let element = document.getElementById(elementId)
     if (element.style.display === "none" || element.style.display === "") {
@@ -64,4 +69,75 @@ function checkConsumableType() {
         document.getElementById("cookingMethod").style.display="none";
         document.getElementById("caffeineSelect").style.display="none";
     }
+}
+
+function enableRestaurantSubmitButton(){
+    let submitButton = document.getElementById("restaurantSubmitButton")
+    let regExp = new RegExp("[a-zA-Z0-9_&' ]*$")
+    let valid = true
+    if (!regExp.test(document.getElementById("resName").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("foodType").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("location-input").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("locality-input").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("administrative_area_level_1-input").value)){
+        valid = false
+    }
+
+    if (valid === false){
+        submitButton.style.backgroundColor = "gray"
+        submitButton.enabled = false
+    }
+    else{
+        submitButton.style.backgroundColor = "lightgray"
+        submitButton.enabled = true
+        alert("WE JERERE")
+    }
+}
+
+function enableConsumableSubmitButton(){
+    let submitButton = document.getElementById("restaurantSubmitButton")
+    let regExp = new RegExp("[a-zA-Z0-9_&' ]*$")
+    let valid = true
+    if (!regExp.test(document.getElementById("conName").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("conFoodType").value)){
+        valid = false
+    }
+    if (!regExp.test(document.getElementById("restaurantName").value)){
+        valid = false
+    }
+    if (document.getElementById("consumableType").value !== "Drink"){
+        if (!regExp.test(document.getElementById("mainIngredients").value)){
+            valid = false
+        }
+    }
+    else if(document.getElementById("cookingMethod").value === "Appetizer" ||
+        document.getElementById("cookingMethod").value === "Entree"){
+        if (!regExp.test(document.getElementById("cookingMethod").value)){
+            valid = false
+        }
+    }
+    if (valid === false){
+        submitButton.style.backgroundColor = "gray"
+        submitButton.enabled = false
+    }
+    else{
+        submitButton.style.backgroundColor = "lightgray"
+        submitButton.enabled = true
+    }
+}
+
+function resetForm(formID) {
+    let form = document.getElementsByName(formID);
+    alert("Lets start resettin")
+    form.reset();  // Reset all form data
 }

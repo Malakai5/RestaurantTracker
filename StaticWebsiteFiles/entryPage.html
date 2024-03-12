@@ -42,10 +42,10 @@
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
                 Enter in your wanted details
                 <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="restaurantForm">
-                    <form id="restaurantEntry">
+                    <form id="restaurantEntry" onsubmit="newRestaurant(); return false">
                     <div class="w3-row w3-third w3-white w3-container" id="restaurantDetails">
-                        <input type="text" placeholder="Restaurant Name" id="resName" name="restaurant_name" required pattern="^[a-zA-Z0-9_ ]*$"/>
-                        <input type="text" placeholder="Type of food" id="foodType" name="food_type" required pattern="^[a-zA-Z0-9_ ]*$"/>
+                        <input type="text" placeholder="Restaurant Name" id="resName" name="restaurant_name" required pattern="[a-zA-Z0-9_&' ]*$"/>
+                        <input type="text" placeholder="Type of food" id="foodType" name="food_type" required pattern="[a-zA-Z0-9_&' ]*$"/>
                         <select id="favorite"  name="is_favorite" required>
                             <option selected disabled>Is it Bussin?(Favorite)</option>
                             <option value="0">No</option>
@@ -58,7 +58,7 @@
                             <option value="$$$">Big ballin</option>
                             <option value="$$$$">THAT STEAK IS HOW MUCH 👀</option>
                         </select>
-                        <img src="images/HungryLogo.png" style="width: 63.5%; height: fit-content">
+                        <img src="images/HungryLogo.png" style="width: 57.5%">
                     </div>
 
                     <div class="w3-row w3-white w3-container card-container w3-rest">
@@ -77,16 +77,16 @@
                         </div>
                         <div class="map w3-container w3-half w3-hide-small" id="gmp-map"></div>
                     </div>
-                        <input type="submit" value="Submit" onclick=newRestaurant()>
+                        <input id="restaurantSubmitButton" type="submit" value="Submit">
                     </form>
                 </div>
                 <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="consumableForm">
-                    <form id="consumableEntry" autocomplete="off">
+                    <form id="consumableEntry" onsubmit="newConsumable(); return false">
                         <div id="consumableDetails" class="w3-third w3-container panel" >
 
-                                <input id="conName" name="consumable_name" placeholder="Consumable Name" type="text" required pattern="^[a-zA-Z0-9_ ]*$">
-                                <input id="conFoodType" name="food_type" type="text" placeholder="Type of Food" required pattern="^[a-zA-Z0-9_ ]*$">
-                                <input id="restaurantName" name="restaurant_name" type="text" placeholder="Restaurant Name" list="restaurantOptions" required pattern="^[a-zA-Z0-9_ ]*$">
+                                <input id="conName" name="consumable_name" placeholder="Consumable Name" type="text" required pattern="[a-zA-Z0-9_&' ]*$">
+                                <input id="conFoodType" name="food_type" type="text" placeholder="Type of Food" required pattern="[a-zA-Z0-9_&' ]*$">
+                                <input id="restaurantName" name="restaurant_name" type="text" placeholder="Restaurant Name" list="restaurantOptions" required pattern="[a-zA-Z0-9_&' ]*$">
                                     <datalist id="restaurantOptions">
                                     </datalist>
                                 </input>
@@ -165,7 +165,7 @@
                                 </select>
                             </div>
                             <div class="w3-container w3-third panel">
-                                <input id="mainIngredients" name="main_ingredients" placeholder="What's in this mug?" class="initiallyHidden" required pattern="^[a-zA-Z0-9_ ]*$">
+                                <input id="mainIngredients" name="main_ingredients" placeholder="What's in this mug?" class="initiallyHidden" required pattern="[a-zA-Z0-9_&' ]*$">
 
                                 <select id="mealSelect" name="meal_time" class="initiallyHidden" required>
                                     <option selected disabled>When we eatin?</option>
@@ -199,13 +199,13 @@
                                     <option value="1">Yes</option>
                                 </select>
 
-                                <input id="cookingMethod" name="method_of_cooking" placeholder="How they cookin it" class="initiallyHidden" required pattern="^[a-zA-Z0-9_ ]*$">
+                                <input id="cookingMethod" name="method_of_cooking" placeholder="How they cookin it" class="initiallyHidden" required pattern="[a-zA-Z0-9_&' ]*$">
 
-                                <input id="numberOfSides" name="number_of_sides" value="0" type="number" placeholder="How many sides you get?" class="initiallyHidden">
+                                <input id="numberOfSides" name="number_of_sides" type="number" placeholder="How many sides you get?" class="initiallyHidden" required>
                             </div>
                         </form>
                     </div>
-                        <input type="button" value="Submit" onclick=newConsumable()>
+                        <input id="consumableSubmitButton" type="Submit" value="Submit" onclick=newConsumable()>
                     </form>
                 </div>
 

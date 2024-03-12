@@ -35,13 +35,16 @@ function newLocation(){
     return fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/Insert", requestOptions)
         .then((response) => response.text())
         .then((text) => JSON.parse(text))
-}
+        .then(json => {
+            console.log(json.statusCode)
+            console.log(json.body)
+            return json.body
+        })}
 
 function newRestaurant(){
     let sqlStatement = "INSERT INTO restaurant_table(restaurant_name, food_type, price_range, is_favorite, location_id) VALUES (";
     let data = new FormData(document.getElementById("restaurantEntry"));
     newLocation().then(json => {
-        console.log(json["id"])
             let restaurant = {
                 restaurant_name : data.get("restaurant_name"),
                 food_type : data.get("food_type"),
@@ -63,10 +66,16 @@ function newRestaurant(){
                 body: raw,
                 redirect: 'follow'
             }
+            console.log(JSON.parse(raw))
 
             fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/Insert", requestOptions)
                 .then(response => response.text())
-                .then(response => console.log(response))
+                .then(response => JSON.parse(response))
+                .then(json => {
+                    if (json.statusCode === '200'){
+                        document.getElementById("restaurantEntry").reset()
+                    }
+                })
         })
 }
 
@@ -148,9 +157,10 @@ function populateMap(){
     fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
-        .then(json => {
-            let restaurant = JSON.parse(json.restaurant)
-            let location = JSON.parse(json.location)
+        .then(json => json.body)
+        .then(body => {
+            let restaurant = JSON.parse(body.restaurant)
+            let location = JSON.parse(body.location)
             document.getElementById("address-read").value = location.address_number + " " + location.street_name
             if (location.address_number !== 0){
                 document.getElementById("apt-read").value = location.unit_number
@@ -212,8 +222,12 @@ function newConsumable(){
     fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/Insert", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
-        .then(json => console.log(json))
-}
+        .then(json => {
+                if (json.statusCode === '200'){
+                    document.getElementById("consumableEntry").reset()
+                }
+        })
+    }
 
 
 function clearDatalist(datalist){
@@ -248,10 +262,11 @@ async function getRestaurantOptions() {
     fetch("https://y629tb85u6.execute-api.us-east-1.amazonaws.com/dev/filter", requestOptions)
         .then(response => response.text())
         .then(text => JSON.parse(text))
-        .then((json) => {
+        .then(json => json.body)
+        .then((body) => {
             clearDatalist(dataList)
-            for (let i = 0; i < json.length; i++) {
-                let currentObject = JSON.parse(json[i])
+            for (let i = 0; i < body.length; i++) {
+                let currentObject = JSON.parse(body[i])
                 let option = document.createElement('option');
                 option.value = currentObject.restaurant_name
                 dataList.appendChild(option)

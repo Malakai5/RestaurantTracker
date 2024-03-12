@@ -55,7 +55,7 @@ function renderAddress(place, map, marker) {
 }
 
 async function initMap() {
-    const {Map} = google.maps;
+    const { Map } = await google.maps.importLibrary("maps");
     const {AdvancedMarkerElement} = google.maps.marker;
     const {Autocomplete} = google.maps.places;
 

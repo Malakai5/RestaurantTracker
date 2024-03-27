@@ -9,7 +9,6 @@
     <link href="https://www.w3schools.com/lib/w3-colors-win8.css" rel="stylesheet">
     <link href="https://www.w3schools.com/lib/w3-colors-metro.css" rel="stylesheet">
     <link href="LocalStyleSheet.css" rel="stylesheet">
-    <link href="PopUp.css" rel="stylesheet">
 </head>
 
 <body onpageshow="getFoodTypes()">
@@ -20,7 +19,6 @@
     <div class="w3-bar w3-xlarge w3-black" id="myNavbar">
         <a class="w3-bar-item w3-button" href="index.html">HOME</a>
         <a class="w3-bar-item w3-button" href="searchPage.html">SEARCH</a>
-        <a class="w3-bar-item w3-button" href="entryPage.html">ADD NEW ENTRY</a>
         <a class="w3-bar-item w3-button" href="index.html#about">ABOUT</a>
         <a class="w3-bar-item w3-button" href="index.html#bio">MEET ME</a>
         <a class="w3-bar-item w3-button" href="index.html#contact">CONTACT</a>
@@ -34,17 +32,15 @@
         <h1 class="w3-center w3-jumbo bigHeader">LET'S GET TO SEARCHING</h1>
         <div class="class=row w3-khaki restaurantOrConsumable">
             <div class="w3-row w3-center w3-border w3-border-dark-grey">
-                <a onclick=showAndHide("RestaurantForm","ConsumableForm")>
-                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Restaurants</div>
+                <a onclick=showAndHide("searchForm","addForm")>
+                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Search</div>
                 </a>
-                <a onclick=showAndHide("ConsumableForm","RestaurantForm")>
-                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Consumables</div>
+                <a onclick=showAndHide("addForm","searchForm")>
+                    <div class="w3-col s6 tablink w3-black w3-padding-large w3-hover-red">Add</div>
                 </a>
             </div>
             <div class="w3-row w3-center w3-border w3-border-dark-grey" id="searchBox">
-                Enter in your wanted details
-
-                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="RestaurantForm">
+                <div class="w3-border w3-border-dark-grey initiallyHidden" id="searchForm">
                     <form id="restaurantSearchForm">
                         <table>
                             <tr>
@@ -53,7 +49,7 @@
                             <tr>
                                 <td>Restaurant's Name</td>
                                 <td><label>
-                                    <input name="restaurant_name" type="text">
+                                    <input name="restaurant_name" type="text" placeholder="Restaurant Name">
                                 </label></td>
                             </tr>
                             <tr>
@@ -164,154 +160,128 @@
                                     </select>
                                 </label></td>
                             </tr>
-                            <tr>
-                                <td>Malakai's Fav?</td>
-                                <!--- Favorite Question -->
-                                <td>
-                                    <select id="favoriteRestaurant" name="is_favorite">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
                         </table>
                     </form>
                     <button id="searchButton" onclick=searchButtonClicked("restaurantSearchForm")>Find me Sumthin
                     </button>
                 </div>
+                <div class="w3-border w3-border-dark-grey initiallyHidden" id="addForm">
+                    <form id="entryForm" onsubmit="newRestaurant(); return false">
 
-                <div class="w3-row w3-center w3-border w3-border-dark-grey initiallyHidden" id="ConsumableForm">
-                    <form id="consumableSearchForm">
-                        <table>
-                            <tr>
-                                <th colspan="2">Oh you one of them picky ones</th>
-                            </tr>
-                            <tr>
-                                <td>Consumable's Name</td>
-                                <td><label>
-                                    <input name="consumable_name" type="text">
-                                </label></td>
-                            </tr>
-                            <tr>
-                                <td>Consumable Type</td>
-                                <td><label>
-                                    <!---  Consumable Types -->
-                                    <select id="consumableType" name="consumable_type" onchange="checkConsumableType()">
-                                        <option value=""></option>
-                                        <option value="Entree">Entree</option>
-                                        <option value="Appetizer">Appetizer</option>
-                                        <option value="Dessert">Dessert</option>
-                                        <option value="Drink">Drink</option>
-                                    </select>
-                                </label></td>
-                            </tr>
+                        <h1><b>Add a new restaurant:</b></h1>
 
-                            <tr>
-                                <td>Is it hot</td>
-                                <td>
-                                    <select id="isHot" name="is_hot">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <!-- One "tab" for each step in the form: -->
+                        <div class="tab">
+                            <p><input class="entry-input" placeholder="Restaurant Name" name="restaurant_name" id="restaurantName-entry"></p>
+                            <p><input class="entry-input" placeholder="Enter in a Food type" name="food_type" list="typeList" id = "foodType-entry">
+                            <datalist id="typeList"></datalist></p>
+                            <p><select class="entry-input" id="priceRange-entry" name="price_range" required>
+                                <option selected disabled value="">How much we tryna spend</option>
+                                <option value="$">Chump Change</option>
+                                <option value="$$">Lil bit of money</option>
+                                <option value="$$$">Big ballin</option>
+                                <option value="$$$$">THAT STEAK IS HOW MUCH 👀</option>
+                            </select></p>
+                            <p><select class="entry-input" id="rating-entry" name="rating" required>
+                                <option selected disabled value="">How much you like it?</option>
+                                <option value=1>Nah we good</option>
+                                <option value=2>It's Aight</option>
+                                <option value=3>I might eat it again</option>
+                                <option value=4>Food bussin</option>
+                                <option value=5>OH LAWD THIS GOOD</option>
+                            </select></p>
+                        </div>
 
-                            <tr id="mealSelect" class="initiallyHidden">
-                                <td>Time of Meal</td>
-                                <!--- Time of Meal -->
-                                <td>
-                                    <select id="mealTime" name="meal_time">
-                                        <option></option>
-                                        <option value="Breakfast">Breakfast</option>
-                                        <option value="Brunch">Brunch</option>
-                                        <option value="Lunch">Lunch</option>
-                                        <option value="Dinner">Dinner</option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <div class="tab">Restaurant Location:
+                            <div class="w3-container card-container">
+                                <div class="panel w3-container w3-rest w3-white">
+                                    <input class="entry-input" type="text" placeholder="Address" id="location-input" name="address" required/>
+                                    <input type="text" placeholder="Apt, Suite, etc (optional)" name="unit_number" value="0"/>
+                                    <input type="text" placeholder="City" id="locality-input" name="city" required/>
+                                    <div class="half-input-container">
+                                        <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input" name="state" required/>
+                                        <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input" name="zipcode" required/>
+                                    </div>
+                                    <input type="text" placeholder="Country" id="country-input"/>
+                                </div>
+                            <div class="map w3-container w3-third" id="gmp-map"></div>
+                            </div>
+                        </div>
 
-                            <tr id="alcoholSelect" class="initiallyHidden">
-                                <td>Alcoholic?</td>
-                                <!--- Alcohol Question -->
-                                <td>
-                                    <select id="alcohol" name="is_alcoholic">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <div class="tab">Extra details(opt.):
+                            <p><select id="themed-entry" name="themed" required>
+                                <option selected value="0">Is this restaurant Themed?</option>
+                                <option value="0">Nah it's boring</option>
+                                <option value="1">Kinda lit</option>
+                            </select></p>
 
-                            <tr id="caffeineSelect" class="initiallyHidden">
-                                <td>Caffeinated?</td>
-                                <!--- Caffeine Question -->
-                                <td>
-                                    <select id="caffeine" name="high_caffeine">
-                                        <option></option>
-                                        <option value="No">No</option>
-                                        <option value="Yes">Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            <p><select id="poc-entry" name="poc-food" required>
+                                <option selected value="0">Is this place POC certified?</option>
+                                <option value="0">No POC's in this bih</option>
+                                <option value="1">Got us some melanin</option>
+                            </select></p>
 
-                            <tr>
-                                <td>Has Meat?</td>
-                                <!--- Meat Question -->
-                                <td>
-                                    <select id="hasMeat" name="has_meat">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            <p><select id="local-entry" name="locally-owned" required>
+                                <option selected value="0">Is this a chain or is it locally owned?</option>
+                                <option value="0">⛓️⛓️⛓️</option>
+                                <option value="1">Locally owned</option>
+                            </select></p>
+                        </div>
 
-                            <tr>
-                                <td>Has Dairy?</td>
-                                <!--- Dairy Question -->
-                                <td>
-                                    <select id="hasDairy" name="has_dairy">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <div class="tab"> Reviewer code (opt.):
+                            <p>
+                                <b>Do you have a reviewer code(if not leave blank)</b>
+                                <input class="access-input" placeholder="Access code" id="access-code" name="highest-reviewer" onchange="checkReviewerCode()">
+                            </p>
+                        </div>
 
-                            <tr>
-                                <td>Main Taste Elements</td>
-                                <td><label>
-                                    <select id="tasteElement" name="taste_elements">
-                                        <option></option>
-                                        <option value="Savory">Savory</option>
-                                        <option value="Sweet">Sweet</option>
-                                        <option value="Bitter">Bitter</option>
-                                        <option value="Salty">Salty</option>
-                                        <option value="Sour">Sour</option>
-                                        <option value="Uma-mi">Uma-mi</option>
-                                    </select>
-                                </label></td>
-                            </tr>
+                        <div class="tab">Confirmation:
+                            <div class="w3-container card-container">
+                                <div class="panel w3-container w3-white">
+                                    <input type="text" id="restaurantName-entry-confirmation" value="Restaurant Name: " readonly/>
+                                    <input  type="text"  id="foodType-entry-confirmation" value="Food Type: " readonly/>
+                                    <div class="half-input-container">
+                                        <input type="text" id="priceRange-entry-confirmation" value="Price range: " readonly/>
+                                        <input type="text" id="rating-entry-confirmation" value="Rating (1-5): " readonly/>
+                                    </div>
+                                    <input type="text" id="location-input-confirmation" value="Address: " readonly/>
+                                    <input class="initiallyHidden" type="text" id="reviewer-level" value="reviewer-level: " readonly>
+<!--                                    <input type="text" id="themed-entry-confirmation" value="Is themed (1 = yes, 0 = no): " readonly/>-->
+<!--                                    <input type="text" id="poc-entry-confirmation" value="Melanin in the room (1 = yes, 0 = no): "readonly/>-->
+<!--                                    <input type="text" id="local-entry-confirmation" value="Locally owned (1 = yes, 0 = no): " readonly/>-->
+                                </div>
+                            </div>
+                        </div>
 
-                            <tr>
-                                <td>Malakai's Fav?</td>
-                                <!--- Favorite Question -->
-                                <td>
-                                    <select id="favoriteConsumable" name="is_favorite">
-                                        <option></option>
-                                        <option value=False>No</option>
-                                        <option value=True>Yes</option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <div class="tab">Confirmation:
+                                <h1>YOU'RE ALL DONE PARTNA</h1>
+                                <div>
+                                    <p>Tryna add another one
+                                    <button type="reset" onclick="restartForm()"> Add Another restaurant</button></p>
+                                </div>
+                        </div>
 
-                        </table>
+                        <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                <button class=initiallyHidden type="submit" id="submitBtn" onclick="nextPrev(1)">Submit</button>
+                            </div>
+                        </div>
+
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+
                     </form>
-                    <button id="conSearchButton" onclick=searchButtonClicked("consumableSearchForm")>Find me Sumthin
-                    </button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -321,49 +291,23 @@
     <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="searchResults">
         <div class="w2-col s12 w3-padding-large">Legend
             <br>
-            <p>Hot=hot(icon) Spicy=🌶 vegetarian=🥦 dairy=🍦 Malakai's Favorite=🤤</p>
+            <p>Hot=🔥 Spicy=🌶 vegetarian=🥦 dairy=🍦 Malakai's Favorite=🤤</p>
         </div>
         <div class="w3-row w3-center w3-border w3-border-dark-grey">
-            <a href="#restaurantSearchResults" onclick=showAndHide("restaurantSearchResults","consumableSearchResults")>
-                <div class="w3-col s6 tablink w3-padding-large w3-hover-red">Restaurants</div>
-            </a>
-            <a href="#consumableSearchResults" onclick=showAndHide("consumableSearchResults","restaurantSearchResults")>
-                <div class="w3-col s6 tablink w3-padding-large w3-hover-red">Food Items</div>
+            <a href="#restaurantSearchResults" onclick=revealElement("restaurantSearchResults")>
+                <div class="w3-col tablink w3-padding-large w3-hover-red">Restaurants</div>
             </a>
         </div>
 
         <div class="w3-container w3-padding-32 w3-white initiallyHidden" id="restaurantSearchResults">
 
         </div>
-
-        <div class="w3-container w3-padding-32 w3-white initiallyHidden" id="consumableSearchResults">
-
-        </div>
     </div>
 </div>
-
-
-<div id="popup-box" class="modal">
-    <div class="content">
-                <div class="panel popup-card-container w3-container w3-white">
-                    <input style="font-size: x-large" type="text" placeholder="Address" id="location-input" name="address" readonly/>
-                    <input style="font-size: x-large" type="text" placeholder="Apt, Suite, etc (optional)" id="unit_number" name="unit_number" readonly/>
-                    <input style="font-size: x-large" type="text" placeholder="City" id="locality-input" name="city" readonly/>
-                    <div class="half-input-container">
-                        <input style="font-size: x-large" type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input" name="state" readonly/>
-                        <input style="font-size: x-large" type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input" name="zipcode" readonly/>
-                    </div>
-                    <input style="font-size: x-large" type="text" placeholder="Country" id="country-input"/>
-                </div>
-        <div class="w3-row">
-            <input type="button" class="w3-center" onclick="closePopup()" value="CLOSE">
-
-        </div>
-    </div>
-</div>
-
 
 </body>
 <script src="SearchPage.js"></script>
 <script src="util.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKbEUbGlCUCLiwrg2Ojku-l6CNTUdz7ws&libraries=places,marker&callback=initMap&solution_channel=GMP_QB_addressselection_v2_cAB" async defer></script>
+<script src="googleMaps.js"></script>
 </html>
